@@ -1,0 +1,44 @@
+name: Germany AI Jobs -> Telegram
+on:
+  schedule:
+    # Every 5 min, offset from crowded minute 0; GitHub schedule can be delayed.
+    - cron: '2/5 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: germany-job-alerts
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout persistent state
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check source and send Telegram alerts
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          MAX_ALERTS: '12'
+        run: python monitor.py
+      - name: Commit updated state only when changed
+        run: |
+          if ! git diff --quiet -- state/seen.json || [ -n "$(git ls-files --others --exclude-standard state/seen.json)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add state/seen.json
+            git commit -m "chore: save last seen job IDs [skip ci]"
+            git push
+          else
+            echo "No state change"
+          fi
