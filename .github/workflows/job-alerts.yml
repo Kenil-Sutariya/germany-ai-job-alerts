@@ -27,6 +27,7 @@ jobs:
           python-version: '3.12'
       - name: Check source and send Telegram alerts
         env:
+          GITHUB_SOURCE_TOKEN: ${{ github.token }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           MAX_ALERTS: '12'
