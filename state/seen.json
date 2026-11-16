@@ -108487,9 +108487,22 @@
     "fffc89e03daa4cfc84f23a04"
   ],
   "alerted_ids": [],
+  "review_notified_ids": [
+    "1acba408846552c217e188f1",
+    "5a9c2e00ba6f1f0b1f1ae816",
+    "8e3d94345fc5c84fd698e991",
+    "9258fe052657e47aa1b8d4a9",
+    "bff3cdcce885063e29b0ee76",
+    "c064217a2b61d7ea4a802c62",
+    "d511b5db05b08474190353df",
+    "d9661f72bee4e95f10d7824b",
+    "df37ee71e25913d4f2e862d9",
+    "ea388f2414ceb7c6d6f57989"
+  ],
   "completed_replays": [
     "replay:1c8a3633f12dab43329be3adadeae08560ebd930",
-    "4.0:1c8a3633f12dab43329be3adadeae08560ebd930"
+    "4.0:1c8a3633f12dab43329be3adadeae08560ebd930",
+    "4.1:1c8a3633f12dab43329be3adadeae08560ebd930"
   ],
-  "checked_at": "2026-11-16T18:01:02.289448+00:00"
+  "checked_at": "2026-11-16T18:07:14.274610+00:00"
 }
