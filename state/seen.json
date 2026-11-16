@@ -108489,6 +108489,7 @@
   "alerted_ids": [],
   "review_notified_ids": [
     "1acba408846552c217e188f1",
+    "5066068ade78b3693815f4a7",
     "5a9c2e00ba6f1f0b1f1ae816",
     "8e3d94345fc5c84fd698e991",
     "9258fe052657e47aa1b8d4a9",
@@ -108502,7 +108503,8 @@
   "completed_replays": [
     "replay:1c8a3633f12dab43329be3adadeae08560ebd930",
     "4.0:1c8a3633f12dab43329be3adadeae08560ebd930",
-    "4.1:1c8a3633f12dab43329be3adadeae08560ebd930"
+    "4.1:1c8a3633f12dab43329be3adadeae08560ebd930",
+    "4.2:1c8a3633f12dab43329be3adadeae08560ebd930"
   ],
-  "checked_at": "2026-11-16T18:07:14.274610+00:00"
+  "checked_at": "2026-11-16T18:13:46.977797+00:00"
 }
