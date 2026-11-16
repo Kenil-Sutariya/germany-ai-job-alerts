@@ -16,7 +16,31 @@ REPO = os.getenv('SOURCE_REPO', 'ashishtiwari03/work-in-germany')
 PATH = 'data/jobs.json'
 STATE = Path('state/seen.json')
 MAX_ALERTS = int(os.getenv('MAX_ALERTS', '12'))
-AGENT = 'GermanyAIJobAlerts/2.0'
+AGENT = 'GermanyAIJobAlerts/3.0'
+# Conservative allowlist: official applicant tracking systems, not third-party aggregators.
+ATS_HOSTS = ('greenhouse.io', 'lever.co', 'ashbyhq.com', 'smartrecruiters.com',
+             'workdayjobs.com', 'myworkdayjobs.com', 'personio.de', 'jobs.personio.com',
+             'recruitee.com', 'teamtailor.com', 'bamboohr.com', 'join.com')
+GERMAN_CITIES = re.compile(
+    r'\\b(berlin|hamburg|munich|münchen|frankfurt|stuttgart|cologne|köln|'
+    r'düsseldorf|dusseldorf|dortmund|essen|leipzig|dresden|hannover|'
+    r'nürnberg|nuremberg|bonn|bremen|mannheim|karlsruhe|augsburg|'
+    r'freiburg|heidelberg|mainz|wiesbaden|bochum|bielefeld|münster|'
+    r'darmstadt|potsdam|ulm|göttingen|regensburg|ingolstadt|'
+    r'heilbronn|würzburg|braunschweig|aachen|kiel|lübeck)\\b', re.I)
+GERMAN_EMPLOYMENT = re.compile(
+    r'german (employment|labor|labour) contract|employment contract in germany|'
+    r'german entity|german payroll|anstellung in deutschland|'
+    r'deutscher arbeitsvertrag|arbeitgeber in deutschland', re.I)
+BLUE_CARD_SUPPORT = re.compile(
+    r'(eu )?blue card|blaue karte|visa sponsorship|work permit sponsorship', re.I)
+CLOSED = re.compile(
+    r'job (is )?(no longer available|closed|expired)|position (has been )?filled|'
+    r'no longer accepting applications|stelle (ist )?(nicht mehr verfügbar|besetzt)', re.I)
+OPEN_HINT = re.compile(
+    r'apply (now|for this (job|position))|submit application|bewerben|'
+    r'apply for this job|send application', re.I)
+
 
 SKILLS = {
     'Python': r'\bpython\b', 'SQL': r'\bsql\b', 'PyTorch': r'\bpytorch\b',
@@ -30,7 +54,7 @@ SKILLS = {
     'Time series': r'time.series|forecasting|zeitreihen',
     'Machine learning': r'machine learning|maschinelles lernen',
 }
-ROLE = re.compile(r'\b(machine learning|ml engineer|ai engineer|ai developer|applied ai|generative ai|genai|llm|data scientist|data science|mlops|agentic ai|ai automation|ki[- ]?(entwickler|ingenieur)|künstliche intelligenz|research engineer|nlp engineer|computer vision|deep learning)\b', re.I)
+ROLE = re.compile(r'\b(machine learning|ml engineer|ai engineer|ai developer|applied ai|generative ai|genai|llm|data scientist|data science|mlops|agentic ai|ai automation|ki[- ]?(entwickler|ingenieur)|künstliche intelligenz|research engineer|nlp engineer|computer vision|deep learning|ai solutions? engineer|ai specialist|ai consultant|automation engineer|ai application engineer|ki spezialist|ki berater)\b', re.I)
 SECONDARY = re.compile(r'\b(data engineer|dateningenieur|research scientist)\b', re.I)
 ML = re.compile(r'\b(machine learning|\bml\b|llm|rag|pytorch|tensorflow|langgraph|model training|ai agents|vector database)\b', re.I)
 SENIOR = re.compile(r'\b(senior|sr\.?|staff|principal|lead|head of|director|vp|chief|manager|architect)\b', re.I)
@@ -149,8 +173,7 @@ def evaluate(job):
     if not (primary or secondary):
         return None
     loc = job['location']
-    if COUNTRIES.search(loc) and not GERMANY.search(loc):
-        return None
+    # Location/contract eligibility is checked separately, including foreign remote roles.
     matched = [name for name,pattern in SKILLS.items() if re.search(pattern,text,re.I)]
     # Missing from the available text is not proof the employer requires or excludes a skill.
     absent = [name for name in ('Python','PyTorch','LangGraph','RAG','FastAPI','Docker','AWS','Azure') if name not in matched]
@@ -158,6 +181,43 @@ def evaluate(job):
     if not job['description']:
         score = min(score, 6)
     return {'score':score,'matched':matched,'not_mentioned':absent,'language':language(job['description']), 'description_available':bool(job['description'])}
+
+
+def employment_location(job):
+    """Germany anywhere, or foreign remote only with explicit German employment evidence."""
+    loc = job['location']
+    desc = job['description']
+    german_loc = bool(GERMANY.search(loc) or GERMAN_CITIES.search(loc))
+    foreign_loc = bool(COUNTRIES.search(loc))
+    if german_loc and not foreign_loc:
+        return 'Germany location (contract and Blue Card conditions still require confirmation)'
+    if german_loc and foreign_loc:
+        return 'Multiple countries (Germany employment must be confirmed)'
+    remote = bool(re.search(r'\\b(remote|work from home|distributed|homeoffice)\\b', loc + ' ' + desc, re.I))
+    if remote and GERMAN_EMPLOYMENT.search(desc):
+        return 'Foreign/remote with German employment explicitly mentioned'
+    return None
+
+
+def verify_ats(job):
+    """Conservative automated precheck, NOT legal/Blue Card eligibility certification."""
+    url = job['url']
+    if not acceptable_url(url):
+        return False, 'Invalid or third-party job URL'
+    host = (urllib.parse.urlsplit(url).hostname or '').lower()
+    if not any(host == d or host.endswith('.' + d) for d in ATS_HOSTS):
+        return False, 'Employer ownership of custom domain not independently confirmed'
+    try:
+        page = request(url, {'Accept': 'text/html'}, timeout=20).decode('utf-8', 'ignore')
+    except (urllib.error.URLError, TimeoutError, ValueError) as exc:
+        return False, 'Official ATS page could not be reached: ' + type(exc).__name__
+    content = re.sub(r'<[^>]+>', ' ', page)
+    content = re.sub(r'\\s+', ' ', content)
+    if CLOSED.search(content):
+        return False, 'Job page indicates closed/expired'
+    if not OPEN_HINT.search(content):
+        return False, 'Live application action not confirmed'
+    return True, 'Official ATS application page appears open (manual final check advised)'
 
 
 def send(text):
@@ -181,7 +241,7 @@ def send(text):
 
 def save(sha,ids):
     STATE.parent.mkdir(parents=True,exist_ok=True)
-    value = {'sha':sha,'seen_ids':sorted(ids),'checked_at':datetime.now(timezone.utc).isoformat()}
+    value = {'sha':sha,'seen_ids':sorted(ids),'all_seen_ids':sorted(ids),'checked_at':datetime.now(timezone.utc).isoformat()}
     tmp = STATE.with_suffix('.tmp')
     tmp.write_text(json.dumps(value,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf-8')
     tmp.replace(STATE)
@@ -202,19 +262,30 @@ def main():
         save(sha,current.keys())
         send(f'✅ Germany AI Job Alerts baseline initialized: {len(current)} listings. Future dataset additions will be screened.')
         return
-    new = [j for key,j in current.items() if key not in set(old.get('seen_ids',[]))]
+    historical = set(old.get('all_seen_ids', old.get('seen_ids', [])))
+    new = [j for key,j in current.items() if key not in historical]
+    print(f'Newly discovered: {len(new)}; historical seen: {len(historical)}')
     candidates = []
+    reasons = {}
     for j in new:
-        if not acceptable_url(j['url']):
-            continue
         info = evaluate(j)
-        if info is not None:
-            candidates.append((info['score'],j,info))
+        if info is None:
+            reason = 'Role/seniority filter'
+        elif not employment_location(j):
+            reason = 'Germany employment location not established'
+        else:
+            verified, reason = verify_ats(j)
+            if verified:
+                candidates.append((info['score'], j, info))
+                continue
+        reasons[reason] = reasons.get(reason, 0) + 1
+        print(f'FILTERED [{reason}]: {j["title"][:90]} | {j["company"][:50]}')
+    print('Filtered counts:', reasons)
     candidates.sort(key=lambda x:x[0],reverse=True)
     print(f'Blob SHA: {sha}; dataset: {len(current)}; new: {len(new)}; rule matches: {len(candidates)}')
     # State only advances after all alerts succeed; failure can retry without losing alerts.
     if candidates:
-        send(f'🇩🇪 Germany AI Job Alerts\nGitHub dataset newly observed: {len(new)}\nRule-based candidates: {len(candidates)}\nBlob SHA: {sha[:12]}\nNot proof of newly posted or still-open vacancies.')
+        send(f'🇩🇪 Germany AI Job Alerts\nGitHub dataset newly observed: {len(new)}\nRule-based candidates: {len(candidates)}\nBlob SHA: {sha[:12]}\nNew in dataset, not necessarily newly posted. ATS page prechecked.')
         for index,(score,j,info) in enumerate(candidates[:MAX_ALERTS],1):
             matches = ', '.join(info['matched'][:10]) or 'None explicitly stated'
             missing = ', '.join(info['not_mentioned'][:8]) or 'None from tracked list'
@@ -225,7 +296,7 @@ def main():
                    f'🗣 {info["language"]}\n'
                    f'📄 Description: {"available" if info["description_available"] else "missing/incomplete"}\n'
                    f'🔗 {j["url"]}\n'
-                   f'⚠️ Link is not independently verified as an open employer vacancy. Check official employer careers page before applying.')
+                   f'⚠️ Official ATS page prechecked; German contract, salary threshold and Blue Card eligibility require employer/authority confirmation.')
             send(msg)
     save(sha,current.keys())
 
