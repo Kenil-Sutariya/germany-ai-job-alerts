@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
-"""Germany AI job monitor v3.1. Stdlib only. Conservative alerts, transparent review logs."""
+"""Germany AI job monitor 4.0: standard-library only, no paid AI.
+
+Rules: new Git blob only; once-per-rules-version replay for missed listings;
+never treat job-board links, generic ATS landing pages, or an EU remote label
+as proof of an open Germany employment vacancy or EU Blue Card eligibility.
+"""
 import hashlib
+import html
 import json
 import os
 import re
@@ -13,326 +19,401 @@ from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
-REPO = os.getenv("SOURCE_REPO", "ashishtiwari03/work-in-germany")
-DATA_PATH = "data/jobs.json"
-STATE = Path("state/seen.json")
-MAX_ALERTS = int(os.getenv("MAX_ALERTS", "12"))
-# One-time replay of additions between these two commits; disable after successful run.
-# Only jobs present in the current dataset are considered.
-REPLAY_PREVIOUS_COMMIT = os.getenv("REPLAY_PREVIOUS_COMMIT", "1c8a3633f12dab43329be3adadeae08560ebd930").strip()
-AGENT = "GermanyAIJobAlerts/3.1"
+REPO = os.getenv('SOURCE_REPO', 'ashishtiwari03/work-in-germany')
+DATA_PATH = 'data/jobs.json'
+STATE = Path('state/seen.json')
+REVIEW_FILE = Path('state/review_queue.json')
+RULES_VERSION = '4.0'
+MAX_ALERTS = int(os.getenv('MAX_ALERTS', '12'))
+# For the user's missed 165 jobs. This compares the prior commit against HEAD,
+# once per RULES_VERSION, without re-alerting anything already sent by v4.
+REPLAY_PREVIOUS_COMMIT = os.getenv('REPLAY_PREVIOUS_COMMIT',
+    '1c8a3633f12dab43329be3adadeae08560ebd930').strip()
+AGENT = 'GermanyAIJobAlerts/4.0 (+https://github.com/ashishtiwari03/work-in-germany)'
+TIMEOUT = 18
 
-BOARD_HOSTS = ("linkedin.com", "indeed.com", "stepstone.de", "glassdoor.com",
-               "jobrapido.com", "adzuna.com", "jooble.org", "monster.com",
-               "xing.com", "reddit.com", "github.com")
-ATS_HOSTS = ("greenhouse.io", "lever.co", "ashbyhq.com", "smartrecruiters.com",
-             "myworkdayjobs.com", "workdayjobs.com", "jobs.personio.de",
-             "jobs.personio.com", "recruitee.com", "teamtailor.com",
-             "bamboohr.com", "join.com")
-ROLE = re.compile(
-    r"\b(?:ai|ml|ki)\s+(?:developer|engineer|specialist|consultant|solutions?\s+engineer|"
-    r"application\s+engineer|automation\s+(?:engineer|specialist))\b|"
-    r"\b(?:machine learning|maschinelles lernen|applied ai|generative ai|genai|"
-    r"llm|large language model|data scientist|data science|mlops|agentic ai|"
-    r"nlp engineer|computer vision|deep learning|ki entwickler|ki ingenieur|"
-    r"künstliche intelligenz|ai acoustic engineer)\b", re.I)
-SECONDARY = re.compile(r"\b(?:data engineer|dateningenieur|research engineer|"
-                       r"research scientist|automation engineer|software engineer|"
-                       r"r\s*&\s*d engineer|research and development engineer)\b", re.I)
-ML = re.compile(r"\b(?:machine learning|maschinelles lernen|ml|llm|rag|pytorch|"
-                r"tensorflow|langgraph|model training|ai agents|generative ai|"
-                r"artificial intelligence|künstliche intelligenz|neural network|"
-                r"deep learning|predictive modeling|computer vision)\b", re.I)
-SENIOR = re.compile(r"\b(?:senior|sr|staff|principal|lead|head of|director|"
-                    r"vp|chief)\b", re.I)
-ENTRY = re.compile(r"\b(?:junior|graduate|entry level|associate|trainee|"
-                   r"berufseinsteiger)\b", re.I)
+BOARD_DOMAINS = ('linkedin.com', 'indeed.com', 'stepstone.de', 'glassdoor.com',
+                 'xing.com', 'monster.com', 'jooble.org', 'adzuna.com',
+                 'jobrapido.com', 'jobbird.com', 'reddit.com', 'github.com')
+ATS_DOMAINS = ('greenhouse.io', 'lever.co', 'ashbyhq.com', 'smartrecruiters.com',
+               'myworkdayjobs.com', 'workdayjobs.com', 'jobs.personio.de',
+               'jobs.personio.com', 'recruitee.com', 'teamtailor.com',
+               'bamboohr.com', 'join.com', 'workable.com', 'softgarden.io',
+               'softgarden.de', 'apply.workable.com', 'taleo.net', 'icims.com')
+# Match an actual vacancy rather than a generic page that happens to say Apply.
+APPLY_MARKERS = re.compile(r'apply now|apply for this job|apply for this position|'
+                           r'submit application|jetzt bewerben|auf diese stelle bewerben|'
+                           r'apply to this job|bewerbung absenden', re.I)
+CLOSED_MARKERS = re.compile(r'no longer accepting applications|this job is (?:no longer )?available|'
+                            r'position has been filled|job has expired|'
+                            r'stelle (?:ist )?besetzt|stellenanzeige nicht mehr verfügbar', re.I)
+# There is deliberately no exhaustive list of cities. DE address, DE country field,
+# or explicit German wording is stronger evidence than a limited city whitelist.
+DE_LOC = re.compile(r'\b(?:germany|deutschland|bundesweit|remote germany|remote de|'
+                    r'deutschlandweit|deutschlandweit remote|deutschland remote|'
+                    r'de[- ](?:berlin|hamburg|munich|münchen|frankfurt|stuttgart)|'
+                    r'berlin|hamburg|münchen|munich|frankfurt|stuttgart|köln|cologne|'
+                    r'düsseldorf|dortmund|leipzig|dresden|hannover|bremen|bonn|'
+                    r'nürnberg|nuremberg|karlsruhe|mannheim|heidelberg|mainz|'
+                    r'wiesbaden|freiburg|augsburg|essen|aachen|potsdam|ulm|'
+                    r'göttingen|regensburg|braunschweig|kiel|münster|bochum)\b', re.I)
+DE_CONTRACT = re.compile(r'\b(?:german employment contract|german labor contract|'
+                         r'german labour contract|german payroll|german entity|'
+                         r'working from germany permitted|work from germany allowed|'
+                         r'deutscher arbeitsvertrag|anstellung in deutschland|'
+                         r'arbeitsvertrag in deutschland)\b', re.I)
+OTHER_ONLY = re.compile(r'\b(?:switzerland|schweiz|austria|österreich|'
+                        r'united states|usa|united kingdom|uk only|india only)\b', re.I)
+BAD_CONTRACT = re.compile(r'\b(?:freelance|freelancer|independent contractor|'
+                          r'contractor only|self.employed|selbstständig|freiberuflich)\b', re.I)
+STUDENT = re.compile(r'\b(?:werkstudent|working student|praktikum|internship|'
+                     r'intern\b|ausbildung|apprentice|thesis student|duales studium)\b', re.I)
+SENIOR = re.compile(r'\b(?:senior|sr\.?|staff|principal|lead\b|head of|director|'
+                    r'vice president|vp|chief|distinguished)\b', re.I)
+JUNIOR = re.compile(r'\b(?:junior|graduate|entry level|associate|trainee|'
+                    r'berufseinsteiger|early career)\b', re.I)
+PRIMARY = re.compile(
+    r'\b(?:artificial intelligence|machine learning|maschinelles lernen|'
+    r'data scientis\w*|applied ai|generative ai|genai|gen ai|llm|mlops|'
+    r'ai[ /]ml|ai(?:\s+(?:solutions?|application|platform|automation|acoustic))?\s+'
+    r'(?:engineer|developer|specialist|consultant|researcher|scientist)|'
+    r'ki\s+(?:entwickler|ingenieur|spezialist)|ki entwickl\w*|'
+    r'nlp engineer|deep learning|computer vision engineer|'
+    r'ai automation|agentic ai)\b', re.I)
+SECONDARY = re.compile(r'\b(?:data engineer|software engineer|software developer|'
+                       r'product engineer|research engineer|research scientist|'
+                       r'cloud engineer|forward deployed engineer|'
+                       r'full.?stack developer|automation engineer|'
+                       r'knowledge graphs?|graph data)\b', re.I)
+TECH = re.compile(r'\b(?:machine learning|ml\b|llm\b|genai\b|generative ai|'
+                  r'rag\b|langgraph|pytorch|tensorflow|deep learning|'
+                  r'artificial intelligence|ai\b|ki\b|ai[ /]ml|agentic|ai agents?|'
+                  r'knowledge graphs?|vector (?:db|database|store)|'
+                  r'neural networks?|model serving|computer vision|'
+                  r'mlflow|fine.tuning|nlp\b)\b', re.I)
 SKILLS = {
-    "Python": r"\bpython\b", "SQL": r"\bsql\b", "PyTorch": r"\bpytorch\b",
-    "scikit-learn": r"\bscikit[- ]learn\b", "LangGraph": r"\blanggraph\b",
-    "RAG": r"\brag\b|retrieval.augmented", "LLM": r"\bllms?\b|large language model",
-    "AI agents": r"\b(?:ai|llm) agents?\b|agentic",
-    "Vector DB": r"vector (?:database|db|store)|\b(?:pinecone|weaviate|milvus|qdrant|faiss)\b",
-    "FastAPI": r"\bfastapi\b", "Docker": r"\bdocker\b",
-    "AWS": r"\baws\b|amazon web services", "Azure": r"\bazure\b",
-    "MLflow": r"\bmlflow\b", "n8n": r"\bn8n\b",
-    "Time series": r"time.series|forecasting|zeitreihen",
+    'Python': r'\bpython\b', 'SQL': r'\bsql\b', 'PyTorch': r'\bpytorch\b',
+    'scikit-learn': r'\bscikit[- ]learn\b', 'LangGraph': r'\blanggraph\b',
+    'RAG': r'\brag\b|retrieval.augmented', 'LLM': r'\bllms?\b|large language model',
+    'AI Agents': r'agentic|\b(?:ai|llm) agents?\b',
+    'Vector DB': r'vector (?:db|database|store)|\b(?:pinecone|qdrant|weaviate|faiss)\b',
+    'FastAPI': r'\bfastapi\b', 'Docker': r'\bdocker\b',
+    'AWS': r'\baws\b|amazon web services', 'Azure': r'\bazure\b',
+    'MLflow': r'\bmlflow\b', 'n8n': r'\bn8n\b',
+    'Forecasting': r'forecasting|time.series|zeitreihen',
+    'Knowledge graphs': r'knowledge graph|wissensgraph',
 }
-GERMANY = re.compile(r"\b(?:germany|deutschland|deutsch|bundesweit|"
-                     r"berlin|hamburg|münchen|munich|frankfurt|stuttgart|"
-                     r"köln|cologne|düsseldorf|dortmund|leipzig|dresden|"
-                     r"hannover|bremen|bonn|nürnberg|nuremberg|"
-                     r"karlsruhe|mannheim|heidelberg|wiesbaden|mainz|"
-                     r"augsburg|freiburg|essen|bochum|aachen|kiel|"
-                     r"potsdam|göttingen|regensburg|ulm|braunschweig)\b", re.I)
-FOREIGN = re.compile(r"\b(?:switzerland|schweiz|austria|österreich|"
-                     r"united kingdom|united states|usa|india|poland|"
-                     r"netherlands|france|spain|italy)\b", re.I)
-GERMAN_CONTRACT = re.compile(
-    r"\b(?:german employment contract|german labor contract|german labour contract|"
-    r"german payroll|german entity|employment in germany|"
-    r"deutscher arbeitsvertrag|anstellung in deutschland)\b", re.I)
-CLOSED = re.compile(r"no longer accepting applications|job (?:is )?(?:closed|expired)|"
-                    r"position (?:has been )?filled|stelle (?:ist )?besetzt", re.I)
-APPLY = re.compile(r"\b(?:apply now|apply for this job|submit application|"
-                   r"apply for this position|jetzt bewerben|bewerben)\b", re.I)
 
 
-def fetch(url, headers=None, timeout=45):
-    h = {"User-Agent": AGENT, "Accept": "application/json"}
+def request(url, headers=None, timeout=TIMEOUT):
+    h = {'User-Agent': AGENT, 'Accept': 'application/json'}
     h.update(headers or {})
     req = urllib.request.Request(url, headers=h)
-    with urllib.request.urlopen(req, timeout=timeout) as resp:
-        return resp.read(), resp.geturl()
+    with urllib.request.urlopen(req, timeout=timeout) as response:
+        data = response.read(2_500_001)
+        if len(data) > 2_500_000 and 'api.github.com' not in url:
+            raise ValueError('Web page exceeds verification limit')
+        return data, response.geturl()
 
 
 def source():
-    token = os.getenv("GITHUB_SOURCE_TOKEN", "").strip()
-    headers = {"Authorization": "Bearer " + token} if token else {}
-    raw, _ = fetch(f"https://api.github.com/repos/{REPO}/contents/{DATA_PATH}", headers)
+    token = os.getenv('GITHUB_SOURCE_TOKEN', '').strip()
+    h = {'Authorization': 'Bearer ' + token} if token else {}
+    raw, _ = request(f'https://api.github.com/repos/{REPO}/contents/{DATA_PATH}', h)
     info = json.loads(raw)
-    if not info.get("sha"):
-        raise ValueError("Source SHA missing")
-    return info["sha"], info.get("download_url") or f"https://raw.githubusercontent.com/{REPO}/main/{DATA_PATH}"
+    if not info.get('sha'):
+        raise ValueError('GitHub did not return the jobs.json blob SHA')
+    return info['sha'], info.get('download_url') or f'https://raw.githubusercontent.com/{REPO}/main/{DATA_PATH}'
 
 
-def pick(job, *keys):
-    for k in keys:
-        v = job.get(k)
-        if isinstance(v, str) and v.strip():
-            return v.strip()
-        if isinstance(v, dict):
-            for sub in ("name", "title", "value", "url", "city"):
-                if isinstance(v.get(sub), str) and v[sub].strip():
-                    return v[sub].strip()
-        if isinstance(v, list):
-            vals = [x for x in v if isinstance(x, str)]
-            if vals:
-                return ", ".join(vals)
-    return ""
+def field(job, *names):
+    for name in names:
+        value = job.get(name)
+        if isinstance(value, str) and value.strip():
+            return value.strip()
+        if isinstance(value, dict):
+            for k in ('name', 'title', 'value', 'city', 'url'):
+                if isinstance(value.get(k), str) and value[k].strip():
+                    return value[k].strip()
+        if isinstance(value, list):
+            result = [v for v in value if isinstance(v, str)]
+            if result:
+                return ', '.join(result)
+    return ''
 
 
 def jobs_in(data):
-    found = []
+    out = []
     def walk(node, depth=0):
         if depth > 8:
             return
         if isinstance(node, list):
-            for x in node:
-                walk(x, depth + 1)
+            for v in node:
+                walk(v, depth+1)
         elif isinstance(node, dict):
-            if set(node) & {"title", "job_title", "position", "jobTitle"} and \
-               set(node) & {"url", "link", "apply_url", "job_url", "application_url", "applyUrl"}:
-                found.append(node)
+            if set(node) & {'title', 'job_title', 'position', 'jobTitle'} and \
+               set(node) & {'url', 'link', 'apply_url', 'job_url', 'application_url', 'applyUrl'}:
+                out.append(node)
             else:
-                for x in node.values():
-                    if isinstance(x, (dict, list)):
-                        walk(x, depth + 1)
+                for v in node.values():
+                    if isinstance(v, (dict, list)):
+                        walk(v, depth+1)
     walk(data)
-    return found
+    return out
 
 
-def normalize(j):
+def normalize(job):
     return {
-        "title": pick(j, "title", "job_title", "position", "jobTitle"),
-        "url": pick(j, "url", "apply_url", "application_url", "job_url", "link", "applyUrl"),
-        "company": pick(j, "company", "company_name", "employer", "organization") or "Unknown company",
-        "location": pick(j, "location", "city", "job_location", "jobLocation", "locations"),
-        "description": pick(j, "description", "job_description", "summary", "snippet", "requirements", "tags"),
+        'title': field(job, 'title', 'job_title', 'position', 'jobTitle'),
+        'url': field(job, 'url', 'apply_url', 'application_url', 'job_url', 'link', 'applyUrl'),
+        'company': field(job, 'company', 'company_name', 'employer', 'organization') or 'Unknown company',
+        'location': field(job, 'location', 'city', 'job_location', 'jobLocation', 'locations'),
+        'description': field(job, 'description', 'job_description', 'summary', 'snippet', 'requirements', 'tags'),
     }
 
 
-def identity(j):
-    p = urllib.parse.urlsplit(j["url"])
-    qs = [(k, v) for k, v in urllib.parse.parse_qsl(p.query)
-          if not k.lower().startswith("utm_") and k.lower() not in ("ref", "source", "trk")]
-    url = urllib.parse.urlunsplit((p.scheme.lower(), p.netloc.lower(),
-                                  p.path.rstrip("/"), urllib.parse.urlencode(qs), ""))
-    key = url or "|".join((j["company"], j["title"], j["location"]))
-    return hashlib.sha256(key.encode()).hexdigest()[:24]
+def job_id(job):
+    parsed = urllib.parse.urlsplit(job['url'])
+    q = [(k, v) for k, v in urllib.parse.parse_qsl(parsed.query)
+         if not k.lower().startswith('utm_') and k.lower() not in ('ref', 'source', 'trk', 'trackingid')]
+    clean = urllib.parse.urlunsplit((parsed.scheme.lower(), parsed.netloc.lower(),
+                                    parsed.path.rstrip('/'), urllib.parse.urlencode(q), ''))
+    key = clean or '|'.join((job['company'], job['title'], job['location']))
+    return hashlib.sha256(key.encode('utf-8')).hexdigest()[:24]
 
 
-def load_jobs(raw):
-    data = json.loads(raw)
-    rows = jobs_in(data)
-    if not rows:
-        raise ValueError("No jobs recognized; state not updated")
-    return {identity(n): n for n in map(normalize, rows)}
+def load_dataset(raw):
+    jobs = jobs_in(json.loads(raw))
+    if not jobs:
+        raise ValueError('No recognizable jobs in source JSON; state not advanced')
+    return {job_id(j): j for j in (normalize(x) for x in jobs)}
 
 
-def role_check(j):
-    title = re.sub(r"[-_/]+", " ", j["title"]).strip()
-    description = j["description"]
+def title_text(title):
+    return re.sub(r'[-_/|]+', ' ', title).strip()
+
+
+def role_decision(job):
+    title = title_text(job['title'])
+    description = job['description']
+    if STUDENT.search(title):
+        return 'skip', 'student/internship (not target)'
     if SENIOR.search(title):
-        return False, "Senior/lead-only title"
-    if ROLE.search(title):
-        return True, "Primary AI/ML role"
-    if SECONDARY.search(title) and ML.search(description):
-        return True, "AI-heavy secondary role"
-    return False, "Role not clearly AI/ML"
+        return 'skip', 'senior/lead-only title'
+    if PRIMARY.search(title):
+        return 'candidate', 'AI/ML primary title'
+    if SECONDARY.search(title) and TECH.search(description):
+        return 'candidate', 'AI-heavy related role (description evidence)'
+    # When the dataset omits description, do not silently throw away promising
+    # knowledge-graph, software-with-AI, or forward deployed engineer titles.
+    if SECONDARY.search(title) and TECH.search(title):
+        return 'review', 'related role with AI evidence in title; description needed'
+    if re.search(r'\b(?:ai|ki)\b', title, re.I):
+        return 'review', 'AI title needs human relevance check'
+    return 'skip', 'not a matching AI/ML role'
 
 
-def location_check(j):
-    loc = j["location"]
-    desc = j["description"]
-    if GERMANY.search(loc):
-        return True, "Germany location listed; German contract/Blue Card not verified"
-    if FOREIGN.search(loc) and GERMAN_CONTRACT.search(desc):
-        return True, "Foreign employer with German employment wording; verify contract"
-    if re.search(r"\bremote\b", loc, re.I) and GERMAN_CONTRACT.search(desc):
-        return True, "Remote with German employment wording; verify contract"
-    return False, "German employment location/contract not established"
+def location_decision(job):
+    loc, description = job['location'], job['description']
+    if BAD_CONTRACT.search(job['title']):
+        return 'skip', 'freelance/contractor title'
+    if DE_LOC.search(loc):
+        return 'candidate', 'German job location stated; contract/Blue Card not proven'
+    if DE_CONTRACT.search(description):
+        return 'candidate', 'German employment wording in description; verify details'
+    if OTHER_ONLY.search(loc):
+        return 'review', 'foreign location; German employment contract not evidenced'
+    if not loc:
+        return 'review', 'no location in dataset; verify Germany eligibility'
+    if re.search(r'\b(?:remote|europe|eu|worldwide|anywhere)\b', loc, re.I):
+        return 'review', 'remote location; Germany employment permission unverified'
+    return 'review', 'unknown city/country; do not exclude German city automatically'
 
 
-def url_check(url):
+def domain_match(host, domains):
+    return any(host == d or host.endswith('.' + d) for d in domains)
+
+
+def link_decision(url):
     try:
         p = urllib.parse.urlsplit(url)
-        host = (p.hostname or "").lower()
-        if p.scheme != "https" or not host or p.username or p.password:
-            return False, "Invalid URL"
-        if any(host == b or host.endswith("." + b) for b in BOARD_HOSTS):
-            return False, "Third-party job board"
-        if not any(host == a or host.endswith("." + a) for a in ATS_HOSTS):
-            return False, "Unrecognized employer/ATS domain; manual review"
-        return True, "Recognized ATS domain"
+        host = (p.hostname or '').lower()
+        if p.scheme != 'https' or not host or p.username or p.password:
+            return 'review', 'invalid/incomplete link'
+        if domain_match(host, BOARD_DOMAINS):
+            return 'review', 'job-board link; official employer URL required'
+        if domain_match(host, ATS_DOMAINS):
+            return 'candidate', 'recognized ATS domain'
+        return 'review', 'employer custom domain; official ownership not validated'
     except ValueError:
-        return False, "Malformed URL"
+        return 'review', 'malformed link'
 
 
-def ats_check(url):
-    ok, why = url_check(url)
-    if not ok:
-        return False, why
+def verify_official_open(job):
+    """Limited heuristic only. Never makes claims about German immigration approval."""
+    kind, reason = link_decision(job['url'])
+    if kind != 'candidate':
+        return False, reason
     try:
-        raw, final_url = fetch(url, {"Accept": "text/html"}, timeout=18)
-        if len(raw) > 2_000_000:
-            return False, "ATS page too large for verification"
-        html = raw.decode("utf-8", "ignore")
-        text = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html))
-        if CLOSED.search(text):
-            return False, "ATS indicates closed role"
-        if not APPLY.search(text):
-            return False, "Application action not found (may be JavaScript)"
-        # A generic ATS landing page can contain 'apply' but not this vacancy.
-        return True, "ATS page reachable and application action found; employer/Blue Card confirmation pending"
-    except (urllib.error.URLError, TimeoutError, ValueError) as e:
-        return False, f"ATS request failed: {type(e).__name__}"
+        raw, redirected = request(job['url'], {'Accept': 'text/html'}, timeout=20)
+        final_kind, _ = link_decision(redirected)
+        if final_kind != 'candidate':
+            return False, 'redirected outside recognized ATS'
+        page = html.unescape(raw.decode('utf-8', 'ignore'))
+        visible = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', page))
+        if CLOSED_MARKERS.search(visible):
+            return False, 'page says vacancy is closed'
+        if not APPLY_MARKERS.search(visible):
+            return False, 'no application marker on HTML (could be JS rendered)'
+        # Avoid a generic careers homepage: try to locate a meaningful title phrase.
+        title_words = [w for w in re.findall(r'[a-zA-ZäöüÄÖÜ]{3,}', job['title'].lower())
+                       if w not in {'mwd', 'all', 'gender', 'genders', 'junior', 'full', 'time'}]
+        matched = sum(1 for w in set(title_words) if w in visible.lower())
+        if not title_words or matched < min(2, len(set(title_words))):
+            return False, 'specific vacancy title not confirmed on page'
+        return True, 'direct ATS page has matching title and apply action; immigration unverified'
+    except (urllib.error.URLError, TimeoutError, ValueError) as exc:
+        return False, f'ATS page not verifiable: {type(exc).__name__}'
 
 
-def send(message):
-    token = os.getenv("TELEGRAM_BOT_TOKEN", "").strip()
-    chat = os.getenv("TELEGRAM_CHAT_ID", "").strip()
+def telegram(message):
+    token = os.getenv('TELEGRAM_BOT_TOKEN', '').strip()
+    chat = os.getenv('TELEGRAM_CHAT_ID', '').strip()
     if not token or not chat:
-        raise RuntimeError("Missing Telegram secrets")
-    body = urllib.parse.urlencode({
-        "chat_id": chat, "text": message[:3900], "disable_web_page_preview": "true"
-    }).encode()
+        raise RuntimeError('Missing TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID')
     req = urllib.request.Request(
-        f"https://api.telegram.org/bot{token}/sendMessage", data=body, method="POST")
+        f'https://api.telegram.org/bot{token}/sendMessage',
+        data=urllib.parse.urlencode({'chat_id': chat, 'text': message[:3900],
+                                     'disable_web_page_preview': 'true'}).encode(), method='POST')
     for attempt in range(3):
         try:
-            with urllib.request.urlopen(req, timeout=25) as resp:
-                if not json.loads(resp.read()).get("ok"):
-                    raise RuntimeError("Telegram rejected message")
-            return
+            with urllib.request.urlopen(req, timeout=25) as response:
+                result = json.loads(response.read())
+                if not result.get('ok'):
+                    raise RuntimeError('Telegram API did not accept message')
+                return
         except (urllib.error.URLError, RuntimeError):
             if attempt == 2:
                 raise
             time.sleep(2 ** attempt)
 
 
-def save(state):
-    STATE.parent.mkdir(parents=True, exist_ok=True)
-    tmp = STATE.with_suffix(".tmp")
-    tmp.write_text(json.dumps(state, ensure_ascii=False, separators=(",", ":")) + "\n")
-    tmp.replace(STATE)
+def atomic_json(path, payload):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix('.tmp')
+    temporary.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+    temporary.replace(path)
 
 
-def main():
-    sha, url = source()
-    old = json.loads(STATE.read_text()) if STATE.exists() else {}
-    replay_key = f"replay:{REPLAY_PREVIOUS_COMMIT}" if REPLAY_PREVIOUS_COMMIT else ""
-    replay_due = bool(replay_key and replay_key not in old.get("completed_replays", []))
-    if old.get("sha") == sha and not replay_due:
-        print("No new jobs.json revision; no alert")
+def run():
+    sha, download_url = source()
+    old = json.loads(STATE.read_text(encoding='utf-8')) if STATE.exists() else {}
+    replay_key = f'{RULES_VERSION}:{REPLAY_PREVIOUS_COMMIT}' if REPLAY_PREVIOUS_COMMIT else ''
+    replay_due = bool(replay_key and replay_key not in old.get('completed_replays', []))
+    if old.get('sha') == sha and not replay_due:
+        print(f'No new data/jobs.json blob revision; SHA {sha}; alerts suppressed')
         return
 
-    raw, _ = fetch(url, timeout=100)
-    current = load_jobs(raw)
+    # The dataset may be tens of MB. Unlike verify_official_open(), do not cap it at 2.5 MB.
+    req = urllib.request.Request(download_url, headers={'User-Agent': AGENT, 'Accept': 'application/json'})
+    with urllib.request.urlopen(req, timeout=110) as r:
+        current = load_dataset(r.read())
+    now = datetime.now(timezone.utc).isoformat()
     if not old:
-        save({"sha": sha, "seen_ids": sorted(current), "all_seen_ids": sorted(current),
-              "alerted_ids": [], "completed_replays": [],
-              "checked_at": datetime.now(timezone.utc).isoformat()})
-        print(f"Baseline initialized: {len(current)} jobs; no alert")
+        atomic_json(STATE, {'sha': sha, 'seen_ids': sorted(current),
+                            'all_seen_ids': sorted(current), 'alerted_ids': [],
+                            'completed_replays': [], 'checked_at': now})
+        print(f'Baseline initialized: {len(current)}; no job alerts on baseline')
         return
 
-    history = set(old.get("all_seen_ids", old.get("seen_ids", [])))
-    alerted = set(old.get("alerted_ids", []))
-    newly_seen = {k: j for k, j in current.items() if k not in history}
-    review = dict(newly_seen)
+    history = set(old.get('all_seen_ids', old.get('seen_ids', [])))
+    alerted = set(old.get('alerted_ids', []))
+    review = {key: value for key, value in current.items() if key not in history}
+    discovered_count = len(review)
     if replay_due:
-        previous_url = f"https://raw.githubusercontent.com/{REPO}/{REPLAY_PREVIOUS_COMMIT}/{DATA_PATH}"
-        prev_raw, _ = fetch(previous_url, timeout=100)
-        previous = load_jobs(prev_raw)
-        replay_additions = {k: j for k, j in current.items() if k not in previous}
-        review.update({k: j for k, j in replay_additions.items() if k not in alerted})
-        print(f"Replay prior commit: {REPLAY_PREVIOUS_COMMIT}; "
-              f"replay additions currently present: {len(replay_additions)}")
-    print(f"Current: {len(current)}; newly discovered: {len(newly_seen)}; "
-          f"reviewing: {len(review)}; historic IDs: {len(history)}")
+        prior_url = f'https://raw.githubusercontent.com/{REPO}/{REPLAY_PREVIOUS_COMMIT}/{DATA_PATH}'
+        req = urllib.request.Request(prior_url, headers={'User-Agent': AGENT})
+        with urllib.request.urlopen(req, timeout=110) as r:
+            previous = load_dataset(r.read())
+        replay_additions = {key: job for key, job in current.items() if key not in previous}
+        review.update({key: job for key, job in replay_additions.items() if key not in alerted})
+        print(f'Replay previous commit: {REPLAY_PREVIOUS_COMMIT}; currently present additions: {len(replay_additions)}')
 
     reasons = Counter()
-    candidates = []
-    for key, j in review.items():
-        eligible, reason = role_check(j)
-        if not eligible:
-            reasons[reason] += 1
-            print(f"FILTERED [{reason}]: {j['title'][:100]} | {j['company'][:60]}")
-            continue
-        loc_ok, loc_reason = location_check(j)
-        if not loc_ok:
-            reasons[loc_reason] += 1
-            print(f"REVIEW [{loc_reason}]: {j['title'][:100]} | {j['company'][:60]} | {j['url']}")
-            continue
-        verified, verification = ats_check(j["url"])
-        if not verified:
-            reasons[verification] += 1
-            print(f"REVIEW [{verification}]: {j['title'][:100]} | {j['company'][:60]} | {j['url']}")
-            continue
+    review_queue = []
+    alerts = []
+    for key, job in review.items():
         if key in alerted:
             continue
-        text = j["title"] + " " + j["description"]
-        matched = [s for s, pattern in SKILLS.items() if re.search(pattern, text, re.I)]
-        score = (5 if ROLE.search(re.sub(r"[-_/]+", " ", j["title"])) else 2) + \
-                (3 if ENTRY.search(j["title"]) else 0) + min(5, len(matched))
-        candidates.append((score, key, j, matched, loc_reason))
-    candidates.sort(reverse=True, key=lambda row: row[0])
-    print(f"Filtered/review counts: {dict(reasons)}")
-    print(f"Blob SHA: {sha}; dataset: {len(current)}; new: {len(newly_seen)}; "
-          f"ATS prechecked: {len(candidates)}")
-
-    # No automated assertion that Blue Card is guaranteed. Explicitly label gaps.
-    for score, key, j, matched, loc_reason in candidates[:MAX_ALERTS]:
-        send(f"🇩🇪 AI/ML job, newly observed in GitHub dataset\n"
-             f"🏢 {j['company']}\n💼 {j['title']}\n📍 {j['location'] or 'Not specified'}\n"
-             f"🔧 CV skills mentioned: {', '.join(matched) or 'Not stated in dataset'}\n"
-             f"🔗 ATS link: {j['url']}\n"
-             f"⚠️ ATS page prechecked, not proof of a newly posted vacancy. "
-             f"German employment contract, salary and EU Blue Card eligibility NOT confirmed.")
-        alerted.add(key)
-    completed = list(old.get("completed_replays", []))
+        role, reason = role_decision(job)
+        if role == 'skip':
+            reasons[reason] += 1
+            continue
+        location, loc_reason = location_decision(job)
+        link, link_reason = link_decision(job['url'])
+        status = 'review'
+        detail = [reason, loc_reason, link_reason]
+        if location == 'candidate' and link == 'candidate':
+            yes, verify_reason = verify_official_open(job)
+            detail.append(verify_reason)
+            if yes and role == 'candidate':
+                status = 'prechecked'
+        if location == 'skip':
+            reasons[loc_reason] += 1
+            continue
+        skills = [name for name, pattern in SKILLS.items()
+                  if re.search(pattern, job['description'] + ' ' + job['title'], re.I)]
+        entry = {'id': key, **job, 'status': status, 'reasons': detail,
+                 'skills_in_dataset': skills,
+                 'blue_card': 'UNVERIFIED: German contract, salary and residence rules require confirmation',
+                 'first_observed_in_dataset': True,
+                 'newly_posted_on_market': 'UNKNOWN'}
+        if status == 'prechecked':
+            alerts.append(entry)
+        else:
+            review_queue.append(entry)
+            reasons[detail[-1]] += 1
+    # Job-board and unknown location candidates are kept for manual official-link search.
+    # Do not automatically send those links as though they are verified vacancies.
+    def priority(job):
+        title = title_text(job['title'])
+        return (3 if JUNIOR.search(title) else 0) + (4 if PRIMARY.search(title) else 1) + min(4, len(job['skills_in_dataset']))
+    alerts.sort(key=priority, reverse=True)
+    review_queue.sort(key=priority, reverse=True)
+    # Output review queue even when no Telegram alerts were sent. Workflow must commit
+    # this file as well if users want the queue browsable between runs.
+    atomic_json(REVIEW_FILE, {'sha': sha, 'rules_version': RULES_VERSION,
+                              'generated_at': now, 'jobs': review_queue})
+    print(f'Blob SHA: {sha}; dataset: {len(current)}; new: {discovered_count}; '
+          f'reviewed: {len(review)}; ATS-prechecked: {len(alerts)}; '
+          f'manual review: {len(review_queue)}')
+    print('Review/skip counts:', dict(reasons))
+    for job in review_queue[:25]:
+        print('REVIEW:', job['title'][:90], '|', job['company'][:45], '|',
+              job['url'], '|', '; '.join(job['reasons']))
+    # Only direct ATS vacancies with title + apply marker; *not* Blue Card verified.
+    for job in alerts[:MAX_ALERTS]:
+        telegram(f"🇩🇪 AI/ML job: ATS page prechecked\n"
+                 f"🏢 {job['company']}\n💼 {job['title']}\n"
+                 f"📍 {job['location'] or 'Not specified'}\n"
+                 f"🔧 Skills seen: {', '.join(job['skills_in_dataset']) or 'No description provided'}\n"
+                 f"🔗 Official ATS: {job['url']}\n"
+                 f"⚠️ Newly observed on GitHub, NOT proven newly posted. "
+                 f"EU Blue Card eligibility and German contract NOT confirmed.")
+        alerted.add(job['id'])
+    completed = list(old.get('completed_replays', []))
     if replay_due:
         completed.append(replay_key)
-    save({"sha": sha, "seen_ids": sorted(current),
-          "all_seen_ids": sorted(history | set(current)),
-          "alerted_ids": sorted(alerted),
-          "completed_replays": completed,
-          "checked_at": datetime.now(timezone.utc).isoformat()})
+    atomic_json(STATE, {'sha': sha, 'seen_ids': sorted(current),
+                        'all_seen_ids': sorted(history | set(current)),
+                        'alerted_ids': sorted(alerted),
+                        'completed_replays': completed,
+                        'checked_at': now})
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     try:
-        main()
-    except Exception as exc:
-        print(f"ERROR: {type(exc).__name__}: {exc}", file=sys.stderr)
+        run()
+    except Exception as error:
+        print(f'ERROR: {type(error).__name__}: {error}', file=sys.stderr)
         sys.exit(1)
