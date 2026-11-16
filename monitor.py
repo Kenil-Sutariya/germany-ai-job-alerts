@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Germany AI job monitor 4.1: standard-library only, no paid AI.
+"""Germany AI job monitor 4.2: standard-library only, no paid AI.
 
 Rules: new Git blob only; once-per-rules-version replay for missed listings;
 never treat job-board links, generic ATS landing pages, or an EU remote label
@@ -23,14 +23,14 @@ REPO = os.getenv('SOURCE_REPO', 'ashishtiwari03/work-in-germany')
 DATA_PATH = 'data/jobs.json'
 STATE = Path('state/seen.json')
 REVIEW_FILE = Path('state/review_queue.json')
-RULES_VERSION = '4.1'
-MAX_ALERTS = int(os.getenv('MAX_ALERTS', '12'))
-MAX_REVIEW_ALERTS = int(os.getenv('MAX_REVIEW_ALERTS', '10'))
+RULES_VERSION = '4.2'
+# No notification caps: every eligible job is reported once.
+# Telegram messages are batched and paced to avoid exceeding platform limits.
 # For the user's missed 165 jobs. This compares the prior commit against HEAD,
 # once per RULES_VERSION, without re-alerting anything already sent by v4.
 REPLAY_PREVIOUS_COMMIT = os.getenv('REPLAY_PREVIOUS_COMMIT',
     '1c8a3633f12dab43329be3adadeae08560ebd930').strip()
-AGENT = 'GermanyAIJobAlerts/4.1 (+https://github.com/ashishtiwari03/work-in-germany)'
+AGENT = 'GermanyAIJobAlerts/4.2 (+https://github.com/ashishtiwari03/work-in-germany)'
 TIMEOUT = 18
 
 BOARD_DOMAINS = ('linkedin.com', 'indeed.com', 'stepstone.de', 'glassdoor.com',
@@ -278,6 +278,7 @@ def verify_official_open(job):
 
 
 def telegram(message):
+    """Deliver one Telegram message, respecting 429 Retry-After when possible."""
     token = os.getenv('TELEGRAM_BOT_TOKEN', '').strip()
     chat = os.getenv('TELEGRAM_CHAT_ID', '').strip()
     if not token or not chat:
@@ -286,17 +287,30 @@ def telegram(message):
         f'https://api.telegram.org/bot{token}/sendMessage',
         data=urllib.parse.urlencode({'chat_id': chat, 'text': message[:3900],
                                      'disable_web_page_preview': 'true'}).encode(), method='POST')
-    for attempt in range(3):
+    for attempt in range(6):
         try:
-            with urllib.request.urlopen(req, timeout=25) as response:
+            with urllib.request.urlopen(req, timeout=30) as response:
                 result = json.loads(response.read())
                 if not result.get('ok'):
                     raise RuntimeError('Telegram API did not accept message')
                 return
+        except urllib.error.HTTPError as error:
+            if error.code == 429 and attempt < 5:
+                try:
+                    payload = json.loads(error.read())
+                    retry_after = int(payload.get('parameters', {}).get('retry_after', 3))
+                except (ValueError, TypeError, json.JSONDecodeError):
+                    retry_after = 3
+                time.sleep(min(max(retry_after, 1), 120))
+                continue
+            if 500 <= error.code < 600 and attempt < 5:
+                time.sleep(min(2 ** attempt, 30))
+                continue
+            raise
         except (urllib.error.URLError, RuntimeError):
-            if attempt == 2:
+            if attempt == 5:
                 raise
-            time.sleep(2 ** attempt)
+            time.sleep(min(2 ** attempt, 30))
 
 
 
@@ -313,24 +327,44 @@ def review_message(job):
             f"📍 {location}\n🔎 Google careers: {google_careers_url(job)}\n")
 
 
-def send_review_summary(jobs):
-    """Send unverified matches with Google search links; split to Telegram-sized chunks."""
+def send_review_summary(jobs, on_sent=None):
+    """Send ALL unverified relevant jobs in Telegram-sized batches.
+
+    on_sent checkpoints IDs after each successful batch, so a later failure
+    can resume without re-sending already delivered batches.
+    """
     header = ('🔎 AI/ML JOBS FOR MANUAL REVIEW (NOT VERIFIED)\n'
-              'No confirmed official apply URL. Open Google search and check the '
-              'employer careers site. German employment contract, salary and '
-              'EU Blue Card eligibility remain UNVERIFIED.\n\n')
-    message = header
-    sent = []
+              'Google links are searches, NOT confirmed vacancies. Check employer careers page '
+              'and German employment contract/Blue Card requirements.\n\n')
+    message, batch, sent = header, [], []
+
+    def flush():
+        nonlocal message, batch
+        if not batch:
+            return
+        telegram(message)
+        ids = [job['id'] for job in batch]
+        sent.extend(ids)
+        if on_sent:
+            on_sent(ids)
+        time.sleep(1)
+        message, batch = header, []
+
     for job in jobs:
         part = review_message(job) + '\n'
         if len(message) + len(part) > 3800:
-            telegram(message)
-            message = header
+            flush()
+        # Extremely long individual entries are shortened, without altering the URL.
+        if len(header) + len(part) > 3800:
+            part = (f"🏢 {job['company'][:120]}\n💼 {job['title'][:170]}\n"
+                    f"🔎 Google careers: {google_careers_url(job)}\n\n")
+        if len(header) + len(part) > 3800:
+            raise ValueError('Unexpected oversized manual-review job entry')
         message += part
-        sent.append(job['id'])
-    if sent:
-        telegram(message)
+        batch.append(job)
+    flush()
     return sent
+
 
 def atomic_json(path, payload):
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -432,10 +466,16 @@ def run():
                         if job['id'] not in review_notified and job['id'] not in alerted
                         and not job['reasons'][0].startswith('AI title needs human relevance check')
                         and 'foreign location; German employment contract not evidenced' not in job['reasons']]
-    print(f'Google-search manual review candidates: {len(review_to_notify)}; '
-          f'new notifications capped at {MAX_REVIEW_ALERTS}')
+    print(f'Google-search manual review candidates to notify: {len(review_to_notify)}; no cap')
     # Only direct ATS vacancies with title + apply marker; *not* Blue Card verified.
-    for job in alerts[:MAX_ALERTS]:
+    def checkpoint():
+        # Persist notification IDs without advancing SHA/replay status until success.
+        pending = dict(old)
+        pending['alerted_ids'] = sorted(alerted)
+        pending['review_notified_ids'] = sorted(review_notified)
+        atomic_json(STATE, pending)
+
+    for job in alerts:
         telegram(f"🇩🇪 AI/ML job: ATS page prechecked\n"
                  f"🏢 {job['company']}\n💼 {job['title']}\n"
                  f"📍 {job['location'] or 'Not specified'}\n"
@@ -444,7 +484,12 @@ def run():
                  f"⚠️ Newly observed on GitHub, NOT proven newly posted. "
                  f"EU Blue Card eligibility and German contract NOT confirmed.")
         alerted.add(job['id'])
-    review_notified.update(send_review_summary(review_to_notify[:MAX_REVIEW_ALERTS]))
+        checkpoint()
+        time.sleep(1)
+    def checkpoint_review(ids):
+        review_notified.update(ids)
+        checkpoint()
+    send_review_summary(review_to_notify, on_sent=checkpoint_review)
     completed = list(old.get('completed_replays', []))
     if replay_due:
         completed.append(replay_key)
