@@ -1,0 +1,209 @@
+{
+  "sha": "0052df56a85ee568ab262e3ac116f79246f040ca",
+  "rules_version": "4.0",
+  "generated_at": "2026-11-16T18:01:02.289448+00:00",
+  "jobs": [
+    {
+      "id": "9258fe052657e47aa1b8d4a9",
+      "title": "(Junior) Data Engineer | Knowledge Graphs & Pharma Data (f/m/d)",
+      "url": "https://www.linkedin.com/jobs/view/4489745117",
+      "company": "Accurids",
+      "location": "Cologne, North Rhine-Westphalia",
+      "description": "",
+      "status": "review",
+      "reasons": [
+        "related role with AI evidence in title; description needed",
+        "German job location stated; contract/Blue Card not proven",
+        "job-board link; official employer URL required"
+      ],
+      "skills_in_dataset": [
+        "Knowledge graphs"
+      ],
+      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
+      "first_observed_in_dataset": true,
+      "newly_posted_on_market": "UNKNOWN"
+    },
+    {
+      "id": "ea388f2414ceb7c6d6f57989",
+      "title": "Cloud Engineer (Generative AI & LLM) (m/w/d)",
+      "url": "https://de.indeed.com/viewjob?jk=fe8b0f41695aaa98",
+      "company": "Collaboration Betters the World",
+      "location": "Mannheim, BW",
+      "description": "",
+      "status": "review",
+      "reasons": [
+        "AI/ML primary title",
+        "German job location stated; contract/Blue Card not proven",
+        "job-board link; official employer URL required"
+      ],
+      "skills_in_dataset": [
+        "LLM"
+      ],
+      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
+      "first_observed_in_dataset": true,
+      "newly_posted_on_market": "UNKNOWN"
+    },
+    {
+      "id": "8e3d94345fc5c84fd698e991",
+      "title": "Data Scientist - Marketing",
+      "url": "https://careers.trivago.com/apply/8944384002.?gh_jid=8944384002",
+      "company": "Trivago",
+      "location": "Düsseldorf",
+      "description": "",
+      "status": "review",
+      "reasons": [
+        "AI/ML primary title",
+        "German job location stated; contract/Blue Card not proven",
+        "employer custom domain; official ownership not validated"
+      ],
+      "skills_in_dataset": [],
+      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
+      "first_observed_in_dataset": true,
+      "newly_posted_on_market": "UNKNOWN"
+    },
+    {
+      "id": "c064217a2b61d7ea4a802c62",
+      "title": "KI Data Scientist (w/m/d), 16231-KI Hub",
+      "url": "https://de.indeed.com/viewjob?jk=8666b5a72c066ab2",
+      "company": "IT Baden-Württemberg (BITBW)",
+      "location": "Stuttgart, BW",
+      "description": "",
+      "status": "review",
+      "reasons": [
+        "AI/ML primary title",
+        "German job location stated; contract/Blue Card not proven",
+        "job-board link; official employer URL required"
+      ],
+      "skills_in_dataset": [],
+      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
+      "first_observed_in_dataset": true,
+      "newly_posted_on_market": "UNKNOWN"
+    },
+    {
+      "id": "5a9c2e00ba6f1f0b1f1ae816",
+      "title": "AI Engineer",
+      "url": "https://www.linkedin.com/jobs/view/4491500588",
+      "company": "TaskVerse",
+      "location": "Germany",
+      "description": "",
+      "status": "review",
+      "reasons": [
+        "AI/ML primary title",
+        "German job location stated; contract/Blue Card not proven",
+        "job-board link; official employer URL required"
+      ],
+      "skills_in_dataset": [],
+      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
+      "first_observed_in_dataset": true,
+      "newly_posted_on_market": "UNKNOWN"
+    },
+    {
+      "id": "1acba408846552c217e188f1",
+      "title": "Machine Learning Engineer (all genders)",
+      "url": "https://www.linkedin.com/jobs/view/4489722944",
+      "company": "Zalando Marketing Services",
+      "location": "Berlin, Berlin",
+      "description": "",
+      "status": "review",
+      "reasons": [
+        "AI/ML primary title",
+        "German job location stated; contract/Blue Card not proven",
+        "job-board link; official employer URL required"
+      ],
+      "skills_in_dataset": [],
+      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
+      "first_observed_in_dataset": true,
+      "newly_posted_on_market": "UNKNOWN"
+    },
+    {
+      "id": "df37ee71e25913d4f2e862d9",
+      "title": "AI Engineer (m/w/d)",
+      "url": "https://www.linkedin.com/jobs/view/4489747169",
+      "company": "abcfinance GmbH",
+      "location": "Cologne, North Rhine-Westphalia",
+      "description": "",
+      "status": "review",
+      "reasons": [
+        "AI/ML primary title",
+        "German job location stated; contract/Blue Card not proven",
+        "job-board link; official employer URL required"
+      ],
+      "skills_in_dataset": [],
+      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
+      "first_observed_in_dataset": true,
+      "newly_posted_on_market": "UNKNOWN"
+    },
+    {
+      "id": "d511b5db05b08474190353df",
+      "title": "AI-Developer - Public & Infrastructure (w/m/d)",
+      "url": "https://www.linkedin.com/jobs/view/4487911381",
+      "company": "PwC Deutschland",
+      "location": "Erfurt, Thuringia",
+      "description": "",
+      "status": "review",
+      "reasons": [
+        "AI/ML primary title",
+        "unknown city/country; do not exclude German city automatically",
+        "job-board link; official employer URL required"
+      ],
+      "skills_in_dataset": [],
+      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
+      "first_observed_in_dataset": true,
+      "newly_posted_on_market": "UNKNOWN"
+    },
+    {
+      "id": "d9661f72bee4e95f10d7824b",
+      "title": "AI Acoustic Engineer (m/f/d) – UAV Detection, Localization & Signal Processing",
+      "url": "https://www.linkedin.com/jobs/view/4489605663",
+      "company": "Autonomous Teaming",
+      "location": "Munich, Bavaria",
+      "description": "",
+      "status": "review",
+      "reasons": [
+        "AI/ML primary title",
+        "German job location stated; contract/Blue Card not proven",
+        "job-board link; official employer URL required"
+      ],
+      "skills_in_dataset": [],
+      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
+      "first_observed_in_dataset": true,
+      "newly_posted_on_market": "UNKNOWN"
+    },
+    {
+      "id": "bff3cdcce885063e29b0ee76",
+      "title": "Product Engineer KI-first (m/w/d) - Full Stack, 100 % remote",
+      "url": "https://de.indeed.com/viewjob?jk=f0b76596fe048246",
+      "company": "Fundloop",
+      "location": "Düsseldorf, NW",
+      "description": "",
+      "status": "review",
+      "reasons": [
+        "related role with AI evidence in title; description needed",
+        "German job location stated; contract/Blue Card not proven",
+        "job-board link; official employer URL required"
+      ],
+      "skills_in_dataset": [],
+      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
+      "first_observed_in_dataset": true,
+      "newly_posted_on_market": "UNKNOWN"
+    },
+    {
+      "id": "5066068ade78b3693815f4a7",
+      "title": "Software Engineer:in - Data & AI",
+      "url": "https://de.indeed.com/viewjob?jk=c69bf73f947342c3",
+      "company": "code17",
+      "location": "Leipzig, SN",
+      "description": "",
+      "status": "review",
+      "reasons": [
+        "related role with AI evidence in title; description needed",
+        "German job location stated; contract/Blue Card not proven",
+        "job-board link; official employer URL required"
+      ],
+      "skills_in_dataset": [],
+      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
+      "first_observed_in_dataset": true,
+      "newly_posted_on_market": "UNKNOWN"
+    }
+  ]
+}
