@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Germany AI job monitor 4.0: standard-library only, no paid AI.
+"""Germany AI job monitor 4.1: standard-library only, no paid AI.
 
 Rules: new Git blob only; once-per-rules-version replay for missed listings;
 never treat job-board links, generic ATS landing pages, or an EU remote label
@@ -23,13 +23,14 @@ REPO = os.getenv('SOURCE_REPO', 'ashishtiwari03/work-in-germany')
 DATA_PATH = 'data/jobs.json'
 STATE = Path('state/seen.json')
 REVIEW_FILE = Path('state/review_queue.json')
-RULES_VERSION = '4.0'
+RULES_VERSION = '4.1'
 MAX_ALERTS = int(os.getenv('MAX_ALERTS', '12'))
+MAX_REVIEW_ALERTS = int(os.getenv('MAX_REVIEW_ALERTS', '10'))
 # For the user's missed 165 jobs. This compares the prior commit against HEAD,
 # once per RULES_VERSION, without re-alerting anything already sent by v4.
 REPLAY_PREVIOUS_COMMIT = os.getenv('REPLAY_PREVIOUS_COMMIT',
     '1c8a3633f12dab43329be3adadeae08560ebd930').strip()
-AGENT = 'GermanyAIJobAlerts/4.0 (+https://github.com/ashishtiwari03/work-in-germany)'
+AGENT = 'GermanyAIJobAlerts/4.1 (+https://github.com/ashishtiwari03/work-in-germany)'
 TIMEOUT = 18
 
 BOARD_DOMAINS = ('linkedin.com', 'indeed.com', 'stepstone.de', 'glassdoor.com',
@@ -298,6 +299,39 @@ def telegram(message):
             time.sleep(2 ** attempt)
 
 
+
+def google_careers_url(job):
+    """Search URL only; never claim an employer vacancy was verified."""
+    query = ' '.join((job['company'], job['title'], 'careers jobs Germany'))
+    return 'https://www.google.com/search?' + urllib.parse.urlencode({'q': query})
+
+
+def review_message(job):
+    """Single candidate for compact Telegram manual-review summary."""
+    location = job['location'] or 'Not specified'
+    return (f"🏢 {job['company']}\n💼 {job['title']}\n"
+            f"📍 {location}\n🔎 Google careers: {google_careers_url(job)}\n")
+
+
+def send_review_summary(jobs):
+    """Send unverified matches with Google search links; split to Telegram-sized chunks."""
+    header = ('🔎 AI/ML JOBS FOR MANUAL REVIEW (NOT VERIFIED)\n'
+              'No confirmed official apply URL. Open Google search and check the '
+              'employer careers site. German employment contract, salary and '
+              'EU Blue Card eligibility remain UNVERIFIED.\n\n')
+    message = header
+    sent = []
+    for job in jobs:
+        part = review_message(job) + '\n'
+        if len(message) + len(part) > 3800:
+            telegram(message)
+            message = header
+        message += part
+        sent.append(job['id'])
+    if sent:
+        telegram(message)
+    return sent
+
 def atomic_json(path, payload):
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix('.tmp')
@@ -322,12 +356,13 @@ def run():
     if not old:
         atomic_json(STATE, {'sha': sha, 'seen_ids': sorted(current),
                             'all_seen_ids': sorted(current), 'alerted_ids': [],
-                            'completed_replays': [], 'checked_at': now})
+                            'completed_replays': [], 'review_notified_ids': [], 'checked_at': now})
         print(f'Baseline initialized: {len(current)}; no job alerts on baseline')
         return
 
     history = set(old.get('all_seen_ids', old.get('seen_ids', [])))
     alerted = set(old.get('alerted_ids', []))
+    review_notified = set(old.get('review_notified_ids', []))
     review = {key: value for key, value in current.items() if key not in history}
     discovered_count = len(review)
     if replay_due:
@@ -391,6 +426,14 @@ def run():
     for job in review_queue[:25]:
         print('REVIEW:', job['title'][:90], '|', job['company'][:45], '|',
               job['url'], '|', '; '.join(job['reasons']))
+    # Google-search fallback for promising jobs without a verified official URL.
+    # Send only once per job ID, not every run; never present as verified.
+    review_to_notify = [job for job in review_queue
+                        if job['id'] not in review_notified and job['id'] not in alerted
+                        and not job['reasons'][0].startswith('AI title needs human relevance check')
+                        and 'foreign location; German employment contract not evidenced' not in job['reasons']]
+    print(f'Google-search manual review candidates: {len(review_to_notify)}; '
+          f'new notifications capped at {MAX_REVIEW_ALERTS}')
     # Only direct ATS vacancies with title + apply marker; *not* Blue Card verified.
     for job in alerts[:MAX_ALERTS]:
         telegram(f"🇩🇪 AI/ML job: ATS page prechecked\n"
@@ -401,12 +444,14 @@ def run():
                  f"⚠️ Newly observed on GitHub, NOT proven newly posted. "
                  f"EU Blue Card eligibility and German contract NOT confirmed.")
         alerted.add(job['id'])
+    review_notified.update(send_review_summary(review_to_notify[:MAX_REVIEW_ALERTS]))
     completed = list(old.get('completed_replays', []))
     if replay_due:
         completed.append(replay_key)
     atomic_json(STATE, {'sha': sha, 'seen_ids': sorted(current),
                         'all_seen_ids': sorted(history | set(current)),
                         'alerted_ids': sorted(alerted),
+                        'review_notified_ids': sorted(review_notified),
                         'completed_replays': completed,
                         'checked_at': now})
 
