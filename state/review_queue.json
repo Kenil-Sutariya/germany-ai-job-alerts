@@ -1,32 +1,14 @@
 {
-  "sha": "a81174b21e56cdafe86b6ed0de04b0646e0dd7ef",
+  "sha": "12ead1f31c01beaa25c72b8048268c15c908d476",
   "rules_version": "4.2",
-  "generated_at": "2026-11-19T01:08:24.205136+00:00",
+  "generated_at": "2026-11-19T08:45:25.695702+00:00",
   "jobs": [
     {
-      "id": "c08d051051b66c92abb0934a",
-      "title": "(Junior) Machine Learning Engineer (all genders) – Vehicle Logistics",
-      "url": "https://www.glassdoor.de/job-listing/j?jl=1010329762086",
-      "company": "INFORM GmbH",
-      "location": "Aachen",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "German job location stated; contract/Blue Card not proven",
-        "employer custom domain; official ownership not validated"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "fb8269db1e788da39820f7cd",
-      "title": "(Junior) Machine Learning Engineer (all genders) – Vehicle Logistics",
-      "url": "https://de.indeed.com/viewjob?jk=36b94cf5c0d67be2",
-      "company": "INFORM Institut für Operations Research und Management GmbH",
-      "location": "Aachen, NW",
+      "id": "163d7f2d0e5b9ac32484449d",
+      "title": "KI-Entwickler / AI Automation Engineer (m/w/d) Standorte Hemmingstedt, Kiel oder Hamburg",
+      "url": "https://de.indeed.com/viewjob?jk=97f8d360dd3862f0",
+      "company": "Schäfer Verwaltungs GmbH",
+      "location": "Hamburg, HH",
       "description": "",
       "status": "review",
       "reasons": [
@@ -40,423 +22,16 @@
       "newly_posted_on_market": "UNKNOWN"
     },
     {
-      "id": "eafc619af448c6eba89c685a",
-      "title": "(Junior) Computer Vision Engineer für industrielle Anwendungen (m/w/d)",
-      "url": "https://www.linkedin.com/jobs/view/4491862213",
-      "company": "Schwarz Digits",
-      "location": "Bad Friedrichshall, Baden-Württemberg",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "unknown city/country; do not exclude German city automatically",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "82c29a9c2b02d61974d5484b",
-      "title": "Platform Engineer (Databricks & Azure) Schwerpunkt Agentic AI #11326",
-      "url": "https://www.glassdoor.de/job-listing/j?jl=1010327650884",
-      "company": "Cegeka Deutschland GmbH",
-      "location": "Cologne",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "German job location stated; contract/Blue Card not proven",
-        "employer custom domain; official ownership not validated"
-      ],
-      "skills_in_dataset": [
-        "AI Agents",
-        "Azure"
-      ],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "1a3ade820e8fbba804d96233",
-      "title": "Agentic AI Software Skills and Workflow Engineer (f/m/d)",
-      "url": "https://www.glassdoor.de/job-listing/j?jl=1010327605789",
-      "company": "Siemens",
-      "location": "Munich",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "German job location stated; contract/Blue Card not proven",
-        "employer custom domain; official ownership not validated"
-      ],
-      "skills_in_dataset": [
-        "AI Agents"
-      ],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "a25fa28cbdfbbdb08709519a",
-      "title": "(Junior) Data Engineer | Knowledge Graphs & Pharma Data (f/m/d)",
-      "url": "https://www.glassdoor.de/job-listing/j?jl=1010327507042",
-      "company": "Accurids GmbH",
-      "location": "Cologne",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "related role with AI evidence in title; description needed",
-        "German job location stated; contract/Blue Card not proven",
-        "employer custom domain; official ownership not validated"
-      ],
-      "skills_in_dataset": [
-        "Knowledge graphs"
-      ],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "6c7b1228c82ab3eddc71135d",
-      "title": "Python Software Engineer – AI/Automation (m/f/d)",
-      "url": "https://www.glassdoor.de/job-listing/j?jl=1010327510004",
-      "company": "Lobster DATA GmbH",
-      "location": "Home office, Portugal",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "unknown city/country; do not exclude German city automatically",
-        "employer custom domain; official ownership not validated"
-      ],
-      "skills_in_dataset": [
-        "Python"
-      ],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "f496b836148c1b746358687d",
-      "title": "AI Engineer – AI Agents & Deployment (m/w/d)",
-      "url": "https://www.glassdoor.de/job-listing/j?jl=1010327744736",
-      "company": "VP-Systeme GmbH",
-      "location": "Cologne",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "German job location stated; contract/Blue Card not proven",
-        "employer custom domain; official ownership not validated"
-      ],
-      "skills_in_dataset": [
-        "AI Agents"
-      ],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "eff121a33a1654e9b65c096b",
-      "title": "Data Scientist (m/w/d) - Schwerpunkt Aufbau unserer Datenplattform & KI-Anwendungen",
-      "url": "https://de.indeed.com/viewjob?jk=10fc920b2dc80231",
-      "company": "Emil Löffelhardt",
-      "location": "Schorndorf, BW",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "unknown city/country; do not exclude German city automatically",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "b206df98793c08e15539f64b",
-      "title": "Credit Risk Business Data Scientist (m/w/d/x)",
-      "url": "https://de.indeed.com/viewjob?jk=5db46044e1efbb88",
-      "company": "T-Mobile",
-      "location": "Bonn, NW",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "German job location stated; contract/Blue Card not proven",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "9673a9e97f99d38831537c43",
-      "title": "Data Scientist I (m/f/d)",
-      "url": "https://www.linkedin.com/jobs/view/4491312085",
-      "company": "Redcare Pharmacy",
-      "location": "Cologne, North Rhine-Westphalia",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "German job location stated; contract/Blue Card not proven",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "b24e88c9589f3140677131f7",
-      "title": "Credit Risk Business Data Scientist (m/w/d/x)",
-      "url": "https://www.linkedin.com/jobs/view/4492041594",
-      "company": "Deutsche Telekom Services Europe SE",
-      "location": "Cologne Bonn Region",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "German job location stated; contract/Blue Card not proven",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "c219ad4c097b834b2b1d607c",
-      "title": "Data Scientist",
-      "url": "https://www.linkedin.com/jobs/view/4492043896",
-      "company": "Pyramid Consulting, Inc",
-      "location": "Germany",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "German job location stated; contract/Blue Card not proven",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "24fd02fa27e140695ee62374",
-      "title": "Prompt / AI Engineer (m/w/d) Conversational Agents",
-      "url": "https://www.glassdoor.de/job-listing/j?jl=1010329583349",
-      "company": "SIGNAL IDUNA",
-      "location": "Germany",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "German job location stated; contract/Blue Card not proven",
-        "employer custom domain; official ownership not validated"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "6d408d15540f2926d443b490",
-      "title": "Machine Learning & Computer Vision Engineer",
-      "url": "https://www.linkedin.com/jobs/view/4491897236",
-      "company": "Athlaite",
-      "location": "Berlin, Berlin",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "German job location stated; contract/Blue Card not proven",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "c765c7d52103f3f9e756929a",
-      "title": "Solutions Engineer Machine Learning (all genders) - Hybrid, Berlin/Frankfurt",
-      "url": "https://www.glassdoor.de/job-listing/j?jl=1010328910662",
-      "company": "dida Datenschmiede GmbH",
-      "location": "Berlin",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "German job location stated; contract/Blue Card not proven",
-        "employer custom domain; official ownership not validated"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "f755905d37e5a60e07a75ca3",
-      "title": "AI Engineer (m/w/d)",
-      "url": "https://www.glassdoor.de/job-listing/j?jl=1010328461977",
-      "company": "MVZ Düsseldorf-Centrum GbR",
-      "location": "Düsseldorf",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "German job location stated; contract/Blue Card not proven",
-        "employer custom domain; official ownership not validated"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "7aff6d90949ab5c21f18a2d4",
-      "title": "AI Engineer (m/w/d)",
-      "url": "https://www.glassdoor.de/job-listing/j?jl=1010328529967",
-      "company": "SKOPOS GROUP",
-      "location": "Hürth",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "unknown city/country; do not exclude German city automatically",
-        "employer custom domain; official ownership not validated"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "da4a526c2ec91b0e7785d6ad",
-      "title": "Trainee Cloud & Data - Dein Einstieg in AI Insights & Intelligent Automation (m/w/d)",
-      "url": "https://www.glassdoor.de/job-listing/j?jl=1010328254336",
-      "company": "Deloitte Consulting GmbH",
-      "location": "Berlin",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI title needs human relevance check",
-        "German job location stated; contract/Blue Card not proven",
-        "employer custom domain; official ownership not validated"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "8795b0323561a0d5983bf149",
-      "title": "Machine Learning Engineer (all genders)",
-      "url": "https://www.glassdoor.de/job-listing/j?jl=1010327468176",
-      "company": "Zalando",
-      "location": "Berlin",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "German job location stated; contract/Blue Card not proven",
-        "employer custom domain; official ownership not validated"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "815fc053e3872e5e57b7977a",
-      "title": "AI ENGINEER (m/w/d)",
-      "url": "https://www.glassdoor.de/job-listing/j?jl=1010325755219",
-      "company": "Synqony GmbH",
-      "location": "Erftstadt",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "unknown city/country; do not exclude German city automatically",
-        "employer custom domain; official ownership not validated"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "ade24fb0cf1374946d2927f1",
-      "title": "AI Engineer (m/w/d) Knowledge und Semantic",
-      "url": "https://www.glassdoor.de/job-listing/j?jl=1010325724890",
-      "company": "DIN",
-      "location": "Berlin",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "German job location stated; contract/Blue Card not proven",
-        "employer custom domain; official ownership not validated"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "c203bb5d575f8a94a7bbee50",
-      "title": "KI Data Scientist (w/m/d), 16231-KI Hub",
-      "url": "https://www.glassdoor.de/job-listing/j?jl=1010326086593",
+      "id": "e76b3d43453312ca7997d294",
+      "title": "KI Data Scientist (w/m/d)",
+      "url": "https://www.linkedin.com/jobs/view/4491355236",
       "company": "IT Baden-Württemberg (BITBW)",
-      "location": "Germany",
+      "location": "Stuttgart, Baden-Württemberg",
       "description": "",
       "status": "review",
       "reasons": [
         "AI/ML primary title",
         "German job location stated; contract/Blue Card not proven",
-        "employer custom domain; official ownership not validated"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "76acb80d1e29d85ca0089d8f",
-      "title": "Operations Research/Data Scientist",
-      "url": "https://www.glassdoor.de/job-listing/j?jl=1010324863925",
-      "company": "Lieferando",
-      "location": "Germany",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "German job location stated; contract/Blue Card not proven",
-        "employer custom domain; official ownership not validated"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "464d1002397880f692f14c22",
-      "title": "Forward Deployed Engineer, AI for Retail Supply Chain",
-      "url": "https://de.indeed.com/viewjob?jk=887e73788c7e5e1d",
-      "company": "Efficio",
-      "location": "Home Office",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "related role with AI evidence in title; description needed",
-        "unknown city/country; do not exclude German city automatically",
         "job-board link; official employer URL required"
       ],
       "skills_in_dataset": [],
@@ -465,17 +40,17 @@
       "newly_posted_on_market": "UNKNOWN"
     },
     {
-      "id": "d8b23359288ee6ca19bd083c",
-      "title": "Forward Deployed Engineer, AI for Retail Supply Chain",
-      "url": "https://www.glassdoor.de/job-listing/j?jl=1010330074214",
-      "company": "Efficio",
-      "location": "Home office, Portugal",
+      "id": "a384a2251da401029c8f0c13",
+      "title": "Generative AI Developer (m/f/d)",
+      "url": "https://www.linkedin.com/jobs/view/4491461636",
+      "company": "GWDG - Gesellschaft für wissenschaftliche Datenverarbeitung mbH Göttingen",
+      "location": "Göttingen, Lower Saxony",
       "description": "",
       "status": "review",
       "reasons": [
-        "related role with AI evidence in title; description needed",
-        "unknown city/country; do not exclude German city automatically",
-        "employer custom domain; official ownership not validated"
+        "AI/ML primary title",
+        "German job location stated; contract/Blue Card not proven",
+        "job-board link; official employer URL required"
       ],
       "skills_in_dataset": [],
       "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
@@ -483,11 +58,11 @@
       "newly_posted_on_market": "UNKNOWN"
     },
     {
-      "id": "f6ea9df1ec8ea9d13845146d",
-      "title": "Product Manager (w/m/d) - AI App & Sitebuilder",
-      "url": "https://www.linkedin.com/jobs/view/4491334853",
-      "company": "IONOS",
-      "location": "Karlsruhe, Baden-Württemberg",
+      "id": "e2389dc7c475d41615a4b8b2",
+      "title": "Product Designer (AI x Greentech) (m/f/d)",
+      "url": "https://www.linkedin.com/jobs/view/4492046951",
+      "company": "Reonic",
+      "location": "Berlin",
       "description": "",
       "status": "review",
       "reasons": [
@@ -501,161 +76,17 @@
       "newly_posted_on_market": "UNKNOWN"
     },
     {
-      "id": "26a2c12a1e25073b376b264a",
-      "title": "Agile Coach / Scrum Master für Produktteams, die mit KI entwickeln (m/w/d)",
-      "url": "https://www.linkedin.com/jobs/view/4491343602",
-      "company": "PropertyExpert GmbH",
-      "location": "Monheim, North Rhine-Westphalia",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI title needs human relevance check",
-        "unknown city/country; do not exclude German city automatically",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "6f7bccfdabf3dd67281d329f",
-      "title": "AI Transformation Consultant (w/m/d)",
-      "url": "https://de.indeed.com/viewjob?jk=b5359108c51cb0fd",
+      "id": "a34b371f30235eaa7039bd75",
+      "title": "AI Process & Automation Consultant (w/m/d)",
+      "url": "https://de.indeed.com/viewjob?jk=eb710babfc577c6d",
       "company": "Siemens",
-      "location": "Erlangen, BY",
+      "location": "Berlin, BE",
       "description": "",
       "status": "review",
       "reasons": [
         "AI title needs human relevance check",
-        "unknown city/country; do not exclude German city automatically",
+        "German job location stated; contract/Blue Card not proven",
         "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "dfa7ce8e3b8b091e0ba4e6d2",
-      "title": "PhD position in Physical AI",
-      "url": "https://de.indeed.com/viewjob?jk=4efcdea987062700",
-      "company": "imec",
-      "location": "Heilbronn, BW",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI title needs human relevance check",
-        "unknown city/country; do not exclude German city automatically",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "40b326613996e77d6ab27344",
-      "title": "AI Software Engineer (m/f/d)",
-      "url": "https://www.glassdoor.de/job-listing/j?jl=1010328910884",
-      "company": "Fieldfisher",
-      "location": "Berlin",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "related role with AI evidence in title; description needed",
-        "German job location stated; contract/Blue Card not proven",
-        "employer custom domain; official ownership not validated"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "3ad2bd931f2bae4604e2d523",
-      "title": "AI Transformation Consultant (all genders) - Hybrid, Berlin/Frankfurt",
-      "url": "https://www.glassdoor.de/job-listing/j?jl=1010328528066",
-      "company": "dida Datenschmiede GmbH",
-      "location": "Berlin",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI title needs human relevance check",
-        "German job location stated; contract/Blue Card not proven",
-        "employer custom domain; official ownership not validated"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "79e3a63d5d6daefc1f219da0",
-      "title": "Software Engineer:in - Data & AI",
-      "url": "https://www.glassdoor.de/job-listing/j?jl=1010327348352",
-      "company": "Code17 GmbH",
-      "location": "Leipzig",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "related role with AI evidence in title; description needed",
-        "German job location stated; contract/Blue Card not proven",
-        "employer custom domain; official ownership not validated"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "85a90389557f48695d9ef787",
-      "title": "Software Engineer, Voice AI / Backend",
-      "url": "https://www.glassdoor.de/job-listing/j?jl=1010326947275",
-      "company": "Clera",
-      "location": "Berlin",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "related role with AI evidence in title; description needed",
-        "German job location stated; contract/Blue Card not proven",
-        "employer custom domain; official ownership not validated"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "f9a748e467570140f7c67673",
-      "title": "Research Scientist – Foundation Models and Multimodal AI",
-      "url": "https://www.glassdoor.de/job-listing/j?jl=1010325913448",
-      "company": "Owkin",
-      "location": "Germany",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "related role with AI evidence in title; description needed",
-        "German job location stated; contract/Blue Card not proven",
-        "employer custom domain; official ownership not validated"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "d3c7636fafb1ca92ade4408e",
-      "title": "Founding engineer, AI on CAD geometry (co-founder equity)",
-      "url": "https://www.glassdoor.de/job-listing/j?jl=1010325783095",
-      "company": "LoopForgeLab",
-      "location": "Berlin",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI title needs human relevance check",
-        "German job location stated; contract/Blue Card not proven",
-        "employer custom domain; official ownership not validated"
       ],
       "skills_in_dataset": [],
       "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
