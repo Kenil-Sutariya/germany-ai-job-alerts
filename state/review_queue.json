@@ -1,14 +1,68 @@
 {
-  "sha": "d442aacd3abd6d715b77c859815e826a06d8d321",
+  "sha": "94fd723c620efcee85b9ed4f29e2e3bf7f118d4d",
   "rules_version": "4.2",
-  "generated_at": "2026-11-21T10:45:08.494653+00:00",
+  "generated_at": "2026-11-21T17:47:21.843726+00:00",
   "jobs": [
     {
-      "id": "0af4dcb1d276a1afe83c0ea5",
-      "title": "Data Scientist/ Machine Learning Engineer (m/w/d)",
-      "url": "https://de.indeed.com/viewjob?jk=da4fa9bf67635268",
-      "company": "Landschaftliche Brandkasse Hannover",
-      "location": "Hanover, NI",
+      "id": "f73099a7f63778f796c649fc",
+      "title": "AI ML Engineer",
+      "url": "https://www.linkedin.com/jobs/view/4491957391",
+      "company": "Code Compass 🧭",
+      "location": "Hamburg",
+      "description": "",
+      "status": "review",
+      "reasons": [
+        "AI/ML primary title",
+        "German job location stated; contract/Blue Card not proven",
+        "job-board link; official employer URL required"
+      ],
+      "skills_in_dataset": [],
+      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
+      "first_observed_in_dataset": true,
+      "newly_posted_on_market": "UNKNOWN"
+    },
+    {
+      "id": "a42738ded755c40283472e61",
+      "title": "Artificial Intelligence Engineer",
+      "url": "https://www.linkedin.com/jobs/view/4491943940",
+      "company": "Turnkey Technology Search",
+      "location": "Stuttgart Region",
+      "description": "",
+      "status": "review",
+      "reasons": [
+        "AI/ML primary title",
+        "German job location stated; contract/Blue Card not proven",
+        "job-board link; official employer URL required"
+      ],
+      "skills_in_dataset": [],
+      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
+      "first_observed_in_dataset": true,
+      "newly_posted_on_market": "UNKNOWN"
+    },
+    {
+      "id": "c6ffa3fec2afa10d600996a6",
+      "title": "Applied AI Engineer (all genders)",
+      "url": "https://www.linkedin.com/jobs/view/4491918301",
+      "company": "Wemolo",
+      "location": "Munich, Bavaria",
+      "description": "",
+      "status": "review",
+      "reasons": [
+        "AI/ML primary title",
+        "German job location stated; contract/Blue Card not proven",
+        "job-board link; official employer URL required"
+      ],
+      "skills_in_dataset": [],
+      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
+      "first_observed_in_dataset": true,
+      "newly_posted_on_market": "UNKNOWN"
+    },
+    {
+      "id": "a42f41f9dd9c8b8995bb7dc1",
+      "title": "Experte AI/Machine Learning (w/m/d)",
+      "url": "https://www.linkedin.com/jobs/view/4491929892",
+      "company": "AUDI AG",
+      "location": "Ingolstadt, Bavaria",
       "description": "",
       "status": "review",
       "reasons": [
@@ -22,11 +76,29 @@
       "newly_posted_on_market": "UNKNOWN"
     },
     {
-      "id": "5edbb6f17e54ae9780448ce6",
-      "title": "Junior Talent Acquisition Specialist (m/f/d) | Legal AI Tech Scale-up | Full Remote",
-      "url": "https://de.indeed.com/viewjob?jk=26c1ebad9955fb40",
-      "company": "Noxtua AG",
-      "location": "Berlin, BE",
+      "id": "3e818cddd223af302b860e3b",
+      "title": "Founding Engineer · Machine Learning & Computer Vision",
+      "url": "https://www.linkedin.com/jobs/view/4491895405",
+      "company": "Athlaite",
+      "location": "Berlin, Berlin",
+      "description": "",
+      "status": "review",
+      "reasons": [
+        "AI/ML primary title",
+        "German job location stated; contract/Blue Card not proven",
+        "job-board link; official employer URL required"
+      ],
+      "skills_in_dataset": [],
+      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
+      "first_observed_in_dataset": true,
+      "newly_posted_on_market": "UNKNOWN"
+    },
+    {
+      "id": "8129aa1cd76193b6e7a15446",
+      "title": "Trainee Cloud & Data - Dein Einstieg in AI Insights & Intelligent Automation (m/w/d)",
+      "url": "https://de.indeed.com/viewjob?jk=f3dbd9eb289bf5e3",
+      "company": "Deloitte",
+      "location": "Düsseldorf, NW",
       "description": "",
       "status": "review",
       "reasons": [
@@ -40,11 +112,11 @@
       "newly_posted_on_market": "UNKNOWN"
     },
     {
-      "id": "5e33358284b35da21ff14dab",
-      "title": "Junior Specialist Automation & AI (m/w/d)",
-      "url": "https://www.linkedin.com/jobs/view/4491914529",
-      "company": "TecTake GmbH",
-      "location": "Höchberg, Bavaria",
+      "id": "8357ceb49f1c89fb8a3e6ca5",
+      "title": "Quality Engineer (all genders) – AI-Augmented, End-to-End Quality",
+      "url": "https://de.indeed.com/viewjob?jk=b5eeec344182c627",
+      "company": "eschbach",
+      "location": "Bad Säckingen, BW",
       "description": "",
       "status": "review",
       "reasons": [
@@ -58,65 +130,11 @@
       "newly_posted_on_market": "UNKNOWN"
     },
     {
-      "id": "85d51568c3d32264c236e019",
-      "title": "Trainee Digital Transformation & AI",
-      "url": "https://www.linkedin.com/jobs/view/4489770994",
-      "company": "FUTRUE",
-      "location": "Munich, Bavaria",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI title needs human relevance check",
-        "German job location stated; contract/Blue Card not proven",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "b2961cda50bd53612a162410",
-      "title": "AI Data Curation Specialist for PETRA IV",
-      "url": "https://de.indeed.com/viewjob?jk=bbc114749bca0332",
-      "company": "Deutsches Elektronen-Synchrotron DESY",
-      "location": "Hamburg, HH",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI title needs human relevance check",
-        "German job location stated; contract/Blue Card not proven",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "657244ecdf24682fa9662e08",
-      "title": "Data Engineer – Data Warehouse & AI Foundation (m/w/d)",
-      "url": "https://www.linkedin.com/jobs/view/4491903835",
-      "company": "GENO Broker GmbH",
-      "location": "Frankfurt, Hesse",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "related role with AI evidence in title; description needed",
-        "German job location stated; contract/Blue Card not proven",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "d84837f06492ad5f012095f6",
-      "title": "AI Content Marketing Manager (f/m/d) B2B",
-      "url": "https://de.indeed.com/viewjob?jk=409e120f6e152718",
-      "company": "Berufliche Schulen Potsdam der ASG – Anerkannten Schulgesellschaft mbH",
-      "location": "Berlin, BE",
+      "id": "0c514ddfb17a33eaf2601396",
+      "title": "Business Development Manager - Supply Chain & AI (m/f/d)",
+      "url": "https://de.indeed.com/viewjob?jk=d1673778a1913cb7",
+      "company": "AIONEERS",
+      "location": "Mannheim, BW",
       "description": "",
       "status": "review",
       "reasons": [
