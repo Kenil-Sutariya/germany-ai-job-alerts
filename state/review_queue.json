@@ -1,14 +1,14 @@
 {
-  "sha": "4fe404aa2622371b010b7010bdc8c69b5f999fca",
+  "sha": "d442aacd3abd6d715b77c859815e826a06d8d321",
   "rules_version": "4.2",
-  "generated_at": "2026-11-21T02:56:26.464780+00:00",
+  "generated_at": "2026-11-21T10:45:08.494653+00:00",
   "jobs": [
     {
-      "id": "16faedae88c0f9eee34e989c",
-      "title": "Junior Managers Program (Trainee) - Starte deine Leadership Journey im Bereich HR Tech, Digitalisierung und Generative AI",
-      "url": "https://www.linkedin.com/jobs/view/4489599463",
-      "company": "Bosch",
-      "location": "Gerlingen, Baden-Württemberg",
+      "id": "0af4dcb1d276a1afe83c0ea5",
+      "title": "Data Scientist/ Machine Learning Engineer (m/w/d)",
+      "url": "https://de.indeed.com/viewjob?jk=da4fa9bf67635268",
+      "company": "Landschaftliche Brandkasse Hannover",
+      "location": "Hanover, NI",
       "description": "",
       "status": "review",
       "reasons": [
@@ -22,32 +22,14 @@
       "newly_posted_on_market": "UNKNOWN"
     },
     {
-      "id": "f2d374cbbd6b1c35046f6131",
-      "title": "Data Scientist (m/f/x)",
-      "url": "https://de.indeed.com/viewjob?jk=b8c5ec7994468b07",
-      "company": "DiaMonTech",
+      "id": "5edbb6f17e54ae9780448ce6",
+      "title": "Junior Talent Acquisition Specialist (m/f/d) | Legal AI Tech Scale-up | Full Remote",
+      "url": "https://de.indeed.com/viewjob?jk=26c1ebad9955fb40",
+      "company": "Noxtua AG",
       "location": "Berlin, BE",
       "description": "",
       "status": "review",
       "reasons": [
-        "AI/ML primary title",
-        "German job location stated; contract/Blue Card not proven",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "ff1cda599365400f7cfdabad",
-      "title": "Junior \"AI & Analytics Engineer\" (m/w/d)",
-      "url": "https://de.indeed.com/viewjob?jk=6deae9503c98809c",
-      "company": "Deutsche Post & DHL",
-      "location": "Bonn, NW",
-      "description": "",
-      "status": "review",
-      "reasons": [
         "AI title needs human relevance check",
         "German job location stated; contract/Blue Card not proven",
         "job-board link; official employer URL required"
@@ -58,51 +40,15 @@
       "newly_posted_on_market": "UNKNOWN"
     },
     {
-      "id": "8455cfb35c62a80297781f52",
-      "title": "Junior Experte / Referent \"Data Analyst & AI\" (m/w/d)",
-      "url": "https://de.indeed.com/viewjob?jk=2699013614ed1e50",
-      "company": "Deutsche Post & DHL",
-      "location": "Bonn, NW",
+      "id": "5e33358284b35da21ff14dab",
+      "title": "Junior Specialist Automation & AI (m/w/d)",
+      "url": "https://www.linkedin.com/jobs/view/4491914529",
+      "company": "TecTake GmbH",
+      "location": "Höchberg, Bavaria",
       "description": "",
       "status": "review",
       "reasons": [
         "AI title needs human relevance check",
-        "German job location stated; contract/Blue Card not proven",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "24015b456ba57b45cf376d31",
-      "title": "Full Stack Developer (m/w/d) – KI-Lernplattformen",
-      "url": "https://de.indeed.com/viewjob?jk=409e625e2c933d12",
-      "company": "Pink University GmbH",
-      "location": "Hamburg, HH",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "related role with AI evidence in title; description needed",
-        "German job location stated; contract/Blue Card not proven",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "8ebb117daf58a15a8e9d8a59",
-      "title": "Full Stack Developer (m/w/d) – KI-Lernplattformen",
-      "url": "https://de.indeed.com/viewjob?jk=b114515a7162a6a4",
-      "company": "Pink University GmbH",
-      "location": "Home Office",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "related role with AI evidence in title; description needed",
         "unknown city/country; do not exclude German city automatically",
         "job-board link; official employer URL required"
       ],
@@ -112,11 +58,11 @@
       "newly_posted_on_market": "UNKNOWN"
     },
     {
-      "id": "53dd29fb1f3fbecd2f1331f7",
-      "title": "Business Development Manager - Supply Chain & AI (m/f/d)",
-      "url": "https://de.indeed.com/viewjob?jk=bda0fc61df4c3b88",
-      "company": "AIONEERS",
-      "location": "Munich, BY",
+      "id": "85d51568c3d32264c236e019",
+      "title": "Trainee Digital Transformation & AI",
+      "url": "https://www.linkedin.com/jobs/view/4489770994",
+      "company": "FUTRUE",
+      "location": "Munich, Bavaria",
       "description": "",
       "status": "review",
       "reasons": [
@@ -130,11 +76,11 @@
       "newly_posted_on_market": "UNKNOWN"
     },
     {
-      "id": "0e21d34198ee1e8d55c5d358",
-      "title": "AI Implementation Manager (all genders)",
-      "url": "https://de.indeed.com/viewjob?jk=df52a7954ff91adc",
-      "company": "lio",
-      "location": "Munich, BY",
+      "id": "b2961cda50bd53612a162410",
+      "title": "AI Data Curation Specialist for PETRA IV",
+      "url": "https://de.indeed.com/viewjob?jk=bbc114749bca0332",
+      "company": "Deutsches Elektronen-Synchrotron DESY",
+      "location": "Hamburg, HH",
       "description": "",
       "status": "review",
       "reasons": [
@@ -148,11 +94,29 @@
       "newly_posted_on_market": "UNKNOWN"
     },
     {
-      "id": "d35a6613669e09a0ebcd4bc2",
-      "title": "Consultant (m/w/d) AI Engineering",
-      "url": "https://de.indeed.com/viewjob?jk=d458bdce9ab6d100",
-      "company": "R+V Versicherung AG",
-      "location": "Wiesbaden, HE",
+      "id": "657244ecdf24682fa9662e08",
+      "title": "Data Engineer – Data Warehouse & AI Foundation (m/w/d)",
+      "url": "https://www.linkedin.com/jobs/view/4491903835",
+      "company": "GENO Broker GmbH",
+      "location": "Frankfurt, Hesse",
+      "description": "",
+      "status": "review",
+      "reasons": [
+        "related role with AI evidence in title; description needed",
+        "German job location stated; contract/Blue Card not proven",
+        "job-board link; official employer URL required"
+      ],
+      "skills_in_dataset": [],
+      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
+      "first_observed_in_dataset": true,
+      "newly_posted_on_market": "UNKNOWN"
+    },
+    {
+      "id": "d84837f06492ad5f012095f6",
+      "title": "AI Content Marketing Manager (f/m/d) B2B",
+      "url": "https://de.indeed.com/viewjob?jk=409e120f6e152718",
+      "company": "Berufliche Schulen Potsdam der ASG – Anerkannten Schulgesellschaft mbH",
+      "location": "Berlin, BE",
       "description": "",
       "status": "review",
       "reasons": [
