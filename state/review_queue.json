@@ -1,14 +1,14 @@
 {
-  "sha": "3fd5f8e3f8f8f4b2f7fd7017e8248b67eba5a18d",
+  "sha": "9f922d9b7a7778627e9e855ae88f16eac63c6074",
   "rules_version": "4.2",
-  "generated_at": "2026-11-22T10:14:56.163041+00:00",
+  "generated_at": "2026-11-22T17:53:31.137514+00:00",
   "jobs": [
     {
-      "id": "c3936f5b291762d168f7c59a",
-      "title": "Agentic AI Architect \"Product\" (f/m/d)",
-      "url": "https://de.indeed.com/viewjob?jk=ca6718601e70d5c9",
-      "company": "Siemens",
-      "location": "Munich, BY",
+      "id": "3878617d5aeb2623909be8b4",
+      "title": "Agentic AI Infrastructure Specialist for PETRA IV",
+      "url": "https://www.linkedin.com/jobs/view/4492578730",
+      "company": "DESY",
+      "location": "Hamburg, Hamburg",
       "description": "",
       "status": "review",
       "reasons": [
@@ -24,11 +24,83 @@
       "newly_posted_on_market": "UNKNOWN"
     },
     {
-      "id": "4800f7db4aa37b45487b6473",
-      "title": "AI Video Creator (m/w/d)",
-      "url": "https://de.indeed.com/viewjob?jk=48925f2a64a1cc60",
-      "company": "SEKSIFRATELLO",
-      "location": "Ottensen, HH",
+      "id": "1112eb46bf1f3c70de9dde5c",
+      "title": "(Associate) Consultant Data Science & AI (m/w/d)",
+      "url": "https://www.linkedin.com/jobs/view/4491995679",
+      "company": "Capgemini Invent",
+      "location": "Berlin, Berlin",
+      "description": "",
+      "status": "review",
+      "reasons": [
+        "AI title needs human relevance check",
+        "German job location stated; contract/Blue Card not proven",
+        "job-board link; official employer URL required"
+      ],
+      "skills_in_dataset": [],
+      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
+      "first_observed_in_dataset": true,
+      "newly_posted_on_market": "UNKNOWN"
+    },
+    {
+      "id": "1ed498a99fb357a0037db6b0",
+      "title": "Data Scientist (Supply Chain Management) - Data Labs (m/f/d)",
+      "url": "https://www.linkedin.com/jobs/view/4492811433",
+      "company": "SAP",
+      "location": "Walldorf, Baden-Württemberg",
+      "description": "",
+      "status": "review",
+      "reasons": [
+        "AI/ML primary title",
+        "unknown city/country; do not exclude German city automatically",
+        "job-board link; official employer URL required"
+      ],
+      "skills_in_dataset": [],
+      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
+      "first_observed_in_dataset": true,
+      "newly_posted_on_market": "UNKNOWN"
+    },
+    {
+      "id": "283aa3e89e7b0e2367a8f9d6",
+      "title": "AI-Consultant im Forschungstransfer (w/m/d)",
+      "url": "https://www.linkedin.com/jobs/view/4492952076",
+      "company": "Forschungszentrum Jülich",
+      "location": "Jülich, North Rhine-Westphalia",
+      "description": "",
+      "status": "review",
+      "reasons": [
+        "AI/ML primary title",
+        "unknown city/country; do not exclude German city automatically",
+        "job-board link; official employer URL required"
+      ],
+      "skills_in_dataset": [],
+      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
+      "first_observed_in_dataset": true,
+      "newly_posted_on_market": "UNKNOWN"
+    },
+    {
+      "id": "4bafef75f54724590354bdd5",
+      "title": "Postdoctoral Researcher / Wissenschaftlicher Mitarbeiter – Medical AI & Image Analysis (m/w/d)",
+      "url": "https://www.linkedin.com/jobs/view/4492575240",
+      "company": "LMU Klinikum München",
+      "location": "Munich, Bavaria",
+      "description": "",
+      "status": "review",
+      "reasons": [
+        "AI title needs human relevance check",
+        "German job location stated; contract/Blue Card not proven",
+        "job-board link; official employer URL required"
+      ],
+      "skills_in_dataset": [],
+      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
+      "first_observed_in_dataset": true,
+      "newly_posted_on_market": "UNKNOWN"
+    },
+    {
+      "id": "94cb715fbf6b192d729426bb",
+      "title": "Studentische Hilfskraft (m/w/d) – Medizinische Datenaufbereitung und KI-gestützte Tumorerkennung",
+      "url": "https://de.indeed.com/viewjob?jk=f577e30716c6c36d",
+      "company": "Universitätsklinikum Magdeburg A. ö. R.",
+      "location": "Magdeburg, ST",
       "description": "",
       "status": "review",
       "reasons": [
@@ -42,16 +114,16 @@
       "newly_posted_on_market": "UNKNOWN"
     },
     {
-      "id": "05e6654169bf0f1e8c39d093",
-      "title": "AI Operations Manager (m/w/d) · Remote",
-      "url": "https://de.indeed.com/viewjob?jk=1bbd6499243a1f77",
-      "company": "EVOLVE Digital GmbH",
-      "location": "Home Office",
+      "id": "b902fab73d05470ea6f9f7d9",
+      "title": "AI RnD Engineer, XeSS and Neural Graphics (f/m/d)",
+      "url": "https://de.indeed.com/viewjob?jk=67a1d5d182017149",
+      "company": "Intel Corporation",
+      "location": "Munich, BY",
       "description": "",
       "status": "review",
       "reasons": [
         "AI title needs human relevance check",
-        "unknown city/country; do not exclude German city automatically",
+        "German job location stated; contract/Blue Card not proven",
         "job-board link; official employer URL required"
       ],
       "skills_in_dataset": [],
