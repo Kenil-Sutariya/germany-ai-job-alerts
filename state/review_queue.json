@@ -1,110 +1,146 @@
 {
-  "sha": "94fd723c620efcee85b9ed4f29e2e3bf7f118d4d",
+  "sha": "7f5d0799352bd362707bc2e87efbb8dffa77a679",
   "rules_version": "4.2",
-  "generated_at": "2026-11-21T17:47:21.843726+00:00",
+  "generated_at": "2026-11-22T02:33:55.216464+00:00",
   "jobs": [
     {
-      "id": "f73099a7f63778f796c649fc",
-      "title": "AI ML Engineer",
-      "url": "https://www.linkedin.com/jobs/view/4491957391",
-      "company": "Code Compass 🧭",
+      "id": "6c87927b6a67437f2e4fd545",
+      "title": "Data Scientist/ Machine Learning Engineer (m/w/d)",
+      "url": "https://www.glassdoor.de/job-listing/j?jl=1010332377800",
+      "company": "VGH Versicherungen",
+      "location": "Hanover",
+      "description": "",
+      "status": "review",
+      "reasons": [
+        "AI/ML primary title",
+        "unknown city/country; do not exclude German city automatically",
+        "employer custom domain; official ownership not validated"
+      ],
+      "skills_in_dataset": [],
+      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
+      "first_observed_in_dataset": true,
+      "newly_posted_on_market": "UNKNOWN"
+    },
+    {
+      "id": "76d75a8285533f7f58d9fb9b",
+      "title": "Reconstruction AI Engineer",
+      "url": "https://de.indeed.com/viewjob?jk=2b54cfc60c603816",
+      "company": "Efficio",
+      "location": "Hamburg, HH",
+      "description": "",
+      "status": "review",
+      "reasons": [
+        "AI/ML primary title",
+        "German job location stated; contract/Blue Card not proven",
+        "job-board link; official employer URL required"
+      ],
+      "skills_in_dataset": [],
+      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
+      "first_observed_in_dataset": true,
+      "newly_posted_on_market": "UNKNOWN"
+    },
+    {
+      "id": "4c0b5e4b6d65d47764f0a8b5",
+      "title": "Data Scientist (m/f/x)",
+      "url": "https://www.glassdoor.de/job-listing/j?jl=1010332011674",
+      "company": "Diamontech AG",
+      "location": "Berlin",
+      "description": "",
+      "status": "review",
+      "reasons": [
+        "AI/ML primary title",
+        "German job location stated; contract/Blue Card not proven",
+        "employer custom domain; official ownership not validated"
+      ],
+      "skills_in_dataset": [],
+      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
+      "first_observed_in_dataset": true,
+      "newly_posted_on_market": "UNKNOWN"
+    },
+    {
+      "id": "a0489d4b41cf97b7c7d7f124",
+      "title": "Applied AI Engineer (all genders)",
+      "url": "https://www.glassdoor.de/job-listing/j?jl=1010331679511",
+      "company": "Wemolo",
+      "location": "Munich",
+      "description": "",
+      "status": "review",
+      "reasons": [
+        "AI/ML primary title",
+        "German job location stated; contract/Blue Card not proven",
+        "employer custom domain; official ownership not validated"
+      ],
+      "skills_in_dataset": [],
+      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
+      "first_observed_in_dataset": true,
+      "newly_posted_on_market": "UNKNOWN"
+    },
+    {
+      "id": "481284b359c7912635c6987f",
+      "title": "Development Engineer Smart Control & Machine Learning m/w/d",
+      "url": "https://www.glassdoor.de/job-listing/j?jl=1010331826306",
+      "company": "HAWE Hydraulik",
+      "location": "Aschheim",
+      "description": "",
+      "status": "review",
+      "reasons": [
+        "AI/ML primary title",
+        "unknown city/country; do not exclude German city automatically",
+        "employer custom domain; official ownership not validated"
+      ],
+      "skills_in_dataset": [],
+      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
+      "first_observed_in_dataset": true,
+      "newly_posted_on_market": "UNKNOWN"
+    },
+    {
+      "id": "297c79313c966c6d30919905",
+      "title": "KI Data Scientist (w/m/d), 16231-KI Hub",
+      "url": "https://www.glassdoor.de/job-listing/j?jl=1010327361718",
+      "company": "IT Baden-Württemberg (BITBW)",
+      "location": "Stuttgart",
+      "description": "",
+      "status": "review",
+      "reasons": [
+        "AI/ML primary title",
+        "German job location stated; contract/Blue Card not proven",
+        "employer custom domain; official ownership not validated"
+      ],
+      "skills_in_dataset": [],
+      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
+      "first_observed_in_dataset": true,
+      "newly_posted_on_market": "UNKNOWN"
+    },
+    {
+      "id": "3b6f59712688c64da9dbc2f6",
+      "title": "Software Engineer, Voice AI / Backend",
+      "url": "https://de.indeed.com/viewjob?jk=b58f6d8c429a4cb9",
+      "company": "CLERA",
+      "location": "Berlin, BE",
+      "description": "",
+      "status": "review",
+      "reasons": [
+        "related role with AI evidence in title; description needed",
+        "German job location stated; contract/Blue Card not proven",
+        "job-board link; official employer URL required"
+      ],
+      "skills_in_dataset": [],
+      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
+      "first_observed_in_dataset": true,
+      "newly_posted_on_market": "UNKNOWN"
+    },
+    {
+      "id": "286ea3fcbd982e2a030488fd",
+      "title": "AI Data Curation Specialist for PETRA IV",
+      "url": "https://www.glassdoor.de/job-listing/j?jl=1010332363726",
+      "company": "Deutsches Elektronen-Synchrotron DESY",
       "location": "Hamburg",
       "description": "",
       "status": "review",
       "reasons": [
-        "AI/ML primary title",
-        "German job location stated; contract/Blue Card not proven",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "a42738ded755c40283472e61",
-      "title": "Artificial Intelligence Engineer",
-      "url": "https://www.linkedin.com/jobs/view/4491943940",
-      "company": "Turnkey Technology Search",
-      "location": "Stuttgart Region",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "German job location stated; contract/Blue Card not proven",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "c6ffa3fec2afa10d600996a6",
-      "title": "Applied AI Engineer (all genders)",
-      "url": "https://www.linkedin.com/jobs/view/4491918301",
-      "company": "Wemolo",
-      "location": "Munich, Bavaria",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "German job location stated; contract/Blue Card not proven",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "a42f41f9dd9c8b8995bb7dc1",
-      "title": "Experte AI/Machine Learning (w/m/d)",
-      "url": "https://www.linkedin.com/jobs/view/4491929892",
-      "company": "AUDI AG",
-      "location": "Ingolstadt, Bavaria",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "unknown city/country; do not exclude German city automatically",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "3e818cddd223af302b860e3b",
-      "title": "Founding Engineer · Machine Learning & Computer Vision",
-      "url": "https://www.linkedin.com/jobs/view/4491895405",
-      "company": "Athlaite",
-      "location": "Berlin, Berlin",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "German job location stated; contract/Blue Card not proven",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "8129aa1cd76193b6e7a15446",
-      "title": "Trainee Cloud & Data - Dein Einstieg in AI Insights & Intelligent Automation (m/w/d)",
-      "url": "https://de.indeed.com/viewjob?jk=f3dbd9eb289bf5e3",
-      "company": "Deloitte",
-      "location": "Düsseldorf, NW",
-      "description": "",
-      "status": "review",
-      "reasons": [
         "AI title needs human relevance check",
         "German job location stated; contract/Blue Card not proven",
-        "job-board link; official employer URL required"
+        "employer custom domain; official ownership not validated"
       ],
       "skills_in_dataset": [],
       "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
@@ -112,34 +148,34 @@
       "newly_posted_on_market": "UNKNOWN"
     },
     {
-      "id": "8357ceb49f1c89fb8a3e6ca5",
-      "title": "Quality Engineer (all genders) – AI-Augmented, End-to-End Quality",
-      "url": "https://de.indeed.com/viewjob?jk=b5eeec344182c627",
-      "company": "eschbach",
-      "location": "Bad Säckingen, BW",
+      "id": "95b8976bf36541eb6bc49cd3",
+      "title": "AI Software Engineer (m/w/d)",
+      "url": "https://www.glassdoor.de/job-listing/j?jl=1010331830489",
+      "company": "Agorando Technologies GmbH",
+      "location": "Leipzig",
+      "description": "",
+      "status": "review",
+      "reasons": [
+        "related role with AI evidence in title; description needed",
+        "German job location stated; contract/Blue Card not proven",
+        "employer custom domain; official ownership not validated"
+      ],
+      "skills_in_dataset": [],
+      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
+      "first_observed_in_dataset": true,
+      "newly_posted_on_market": "UNKNOWN"
+    },
+    {
+      "id": "412a754a1538adefc6799867",
+      "title": "IT-Projektmanager für Delivery und E2E-Projektsteuerung von KI-gestützten Produkten mit großem Impact (m/w/d)",
+      "url": "https://de.indeed.com/viewjob?jk=7449c54d2409e42c",
+      "company": "PropertyExpert",
+      "location": "Monheim am Rhein, NW",
       "description": "",
       "status": "review",
       "reasons": [
         "AI title needs human relevance check",
         "unknown city/country; do not exclude German city automatically",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "0c514ddfb17a33eaf2601396",
-      "title": "Business Development Manager - Supply Chain & AI (m/f/d)",
-      "url": "https://de.indeed.com/viewjob?jk=d1673778a1913cb7",
-      "company": "AIONEERS",
-      "location": "Mannheim, BW",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI title needs human relevance check",
-        "German job location stated; contract/Blue Card not proven",
         "job-board link; official employer URL required"
       ],
       "skills_in_dataset": [],
