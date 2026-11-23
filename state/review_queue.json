@@ -1,90 +1,18 @@
 {
-  "sha": "e924eb5ff5ecde0b17ed668838324ac3f2c59e5c",
+  "sha": "cd2edc8332908ac7b92977644aaed82cf452cfa5",
   "rules_version": "4.2",
-  "generated_at": "2026-11-23T03:42:46.065346+00:00",
+  "generated_at": "2026-11-23T13:42:28.330856+00:00",
   "jobs": [
     {
-      "id": "19cc94c47fdd9b13b4f52c3a",
-      "title": "Associate MLOps Engineer (d/f/m)",
-      "url": "https://www.linkedin.com/jobs/view/4492446635",
-      "company": "DHL Data & AI",
-      "location": "Bonn, North Rhine-Westphalia",
+      "id": "3bee6a0db8327b561a43f3f7",
+      "title": "Machine Learning Engineer (ML Engineer)",
+      "url": "https://www.linkedin.com/jobs/view/4490988366",
+      "company": "Beff Co., Ltd.",
+      "location": "Stuttgart, Baden-Württemberg",
       "description": "",
       "status": "review",
       "reasons": [
         "AI/ML primary title",
-        "German job location stated; contract/Blue Card not proven",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "153b184e641733d518771211",
-      "title": "Machine Learning Engineer",
-      "url": "https://www.linkedin.com/jobs/view/4493381611",
-      "company": "SafeAD",
-      "location": "Karlsruhe, Baden-Württemberg",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "German job location stated; contract/Blue Card not proven",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "08170cda32f1af2bdb5d2e9a",
-      "title": "AI Engineer (m/w/d)",
-      "url": "https://de.indeed.com/viewjob?jk=603484f239490a1f",
-      "company": "MVZ Düsseldorf-Centrum GbR",
-      "location": "Düsseldorf, NW",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "German job location stated; contract/Blue Card not proven",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "51b268be99cca6f82ce037ee",
-      "title": "(Junior) Data & AI Analyst (m/w/d)",
-      "url": "https://www.linkedin.com/jobs/view/4490441813",
-      "company": "The Pioneer",
-      "location": "Berlin, Berlin",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI title needs human relevance check",
-        "German job location stated; contract/Blue Card not proven",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "1b672f0268caf5cfbbf73e39",
-      "title": "DevOps Engineer (AI-Assisted) für eine globale Publishing-Plattform *",
-      "url": "https://de.indeed.com/viewjob?jk=1e4d88075ea8abb2",
-      "company": "Ilias Vassiliou & Team / headhunter.digital / Recruiting für Digital, Sales, IT, KI, Automation",
-      "location": "Dortmund, NW",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI title needs human relevance check",
         "German job location stated; contract/Blue Card not proven",
         "job-board link; official employer URL required"
       ],
