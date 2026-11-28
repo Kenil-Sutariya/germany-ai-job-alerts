@@ -1,14 +1,14 @@
 {
-  "sha": "825fb75a7437b2d4af149a96003a17576e8d498b",
+  "sha": "9f2b93914cda04fdedc3c3d25ed3577e871b1cd9",
   "rules_version": "4.2",
-  "generated_at": "2026-11-27T23:40:17.867022+00:00",
+  "generated_at": "2026-11-28T04:58:00.606030+00:00",
   "jobs": [
     {
-      "id": "780f616fff5df01f779d5d5c",
-      "title": "Junior Software & AI Engineer (mfd)",
-      "url": "https://de.indeed.com/viewjob?jk=a7a00c7ff649b811",
-      "company": "NTT Global Data Centers Americas, Inc.",
-      "location": "Frankfurt, HE",
+      "id": "fd7a4f6f380596aeb775c9a2",
+      "title": "Applied AI Engineer",
+      "url": "https://de.indeed.com/viewjob?jk=6e78cf5ec9c05fdb",
+      "company": "VOY",
+      "location": "Berlin, BE",
       "description": "",
       "status": "review",
       "reasons": [
@@ -22,11 +22,11 @@
       "newly_posted_on_market": "UNKNOWN"
     },
     {
-      "id": "23ac43582da30c115279d88e",
-      "title": "Data Scientist für die Energiewende (m/w/d)*",
-      "url": "https://www.linkedin.com/jobs/view/4495094783",
-      "company": "Scalian Germany AG",
-      "location": "Hamburg, Hamburg",
+      "id": "8c07a1f9682040359be317fb",
+      "title": "AI Platform Engineer (m/w/d) – Betrieb unserer KI-Plattform Remix - Hybridmodell am Standort Düsseldorf",
+      "url": "https://de.indeed.com/viewjob?jk=29a771f63a0e05e3",
+      "company": "Cheil",
+      "location": "Düsseldorf, NW",
       "description": "",
       "status": "review",
       "reasons": [
@@ -40,179 +40,17 @@
       "newly_posted_on_market": "UNKNOWN"
     },
     {
-      "id": "5341cd8045f7212d019529c2",
-      "title": "Data Scientist für die Energiewende (m/w/d)*",
-      "url": "https://www.linkedin.com/jobs/view/4495300489",
-      "company": "Scalian Germany AG",
-      "location": "Cologne, North Rhine-Westphalia",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "German job location stated; contract/Blue Card not proven",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "218b79cee55df231054dcc29",
-      "title": "AI ML Engineer",
-      "url": "https://www.linkedin.com/jobs/view/4493894742",
-      "company": "Code Compass 🧭",
-      "location": "Hamburg",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "German job location stated; contract/Blue Card not proven",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "cab0d6e192360585a49d8bc3",
-      "title": "Data & AI Engineer (m/w/d)",
-      "url": "https://de.indeed.com/viewjob?jk=234d1474b6a9937e",
-      "company": "Dr. Oetker",
-      "location": "Bielefeld, NW",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "unknown city/country; do not exclude German city automatically",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "ba611db9597dfed15425822d",
-      "title": "Data & AI Engineer (m/f/d)",
-      "url": "https://de.indeed.com/viewjob?jk=16e14b35f17cd50e",
-      "company": "Dr. Oetker",
-      "location": "Bielefeld, NW",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "unknown city/country; do not exclude German city automatically",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "b306b3ec99762d7815dcf232",
-      "title": "KI-Experte / AI Engineer (m/w/d)",
-      "url": "https://de.indeed.com/viewjob?jk=9953583c09d956e8",
-      "company": "Webware internet solutions GmbH",
-      "location": "Kassel, HE",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "unknown city/country; do not exclude German city automatically",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "f9f572042a604f3ae1bd20ec",
-      "title": "AI & Machine Learning Scientist - Materials Research (d/m/w)",
-      "url": "https://www.linkedin.com/jobs/view/4493484884",
-      "company": "Airbus Defence and Space",
-      "location": "Munich, Bavaria",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "German job location stated; contract/Blue Card not proven",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "f232482ecc74e2dafd2cc762",
-      "title": "AI Engineer",
-      "url": "https://www.linkedin.com/jobs/view/4495543513",
-      "company": "Allianz Partners",
-      "location": "Munich, Bavaria",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "German job location stated; contract/Blue Card not proven",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "40563f3275cebd8a06ff887c",
-      "title": "AI Engineer",
-      "url": "https://www.linkedin.com/jobs/view/4494312932",
-      "company": "FLEXOO",
-      "location": "Heidelberg, Baden-Württemberg",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "German job location stated; contract/Blue Card not proven",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "0bcaef8692a321c211aac64d",
-      "title": "AI-Developer - Public & Infrastructure (w/m/d)",
-      "url": "https://www.linkedin.com/jobs/view/4487920229",
-      "company": "PwC Deutschland",
-      "location": "Kiel, Schleswig-Holstein",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI/ML primary title",
-        "German job location stated; contract/Blue Card not proven",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "dd85cf4e028ac49ed2bb85cf",
-      "title": "EAE AI Sales Specialist - DACH",
-      "url": "https://www.mongodb.com/careers/job/?gh_jid=8406025",
-      "company": "MongoDB",
-      "location": "Berlin; Frankfurt; Munich",
+      "id": "2571576dd0b05369b3b42176",
+      "title": "AI Innovation Engineer NCE (m/f/d)",
+      "url": "https://de.indeed.com/viewjob?jk=132fa16dc0479e04",
+      "company": "Vestas",
+      "location": "Hamburg, HH",
       "description": "",
       "status": "review",
       "reasons": [
         "AI title needs human relevance check",
         "German job location stated; contract/Blue Card not proven",
-        "employer custom domain; official ownership not validated"
+        "job-board link; official employer URL required"
       ],
       "skills_in_dataset": [],
       "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
@@ -220,11 +58,65 @@
       "newly_posted_on_market": "UNKNOWN"
     },
     {
-      "id": "a489b59452270307dcdc4227",
-      "title": "DevOps Enginer (m/w/d)- Kubernetes & AI Infrastructure",
-      "url": "https://www.linkedin.com/jobs/view/4495088384",
-      "company": "ADITO Software GmbH",
-      "location": "Landshut, Bavaria",
+      "id": "d6a93345d627e38bc1793b73",
+      "title": "AI Innovation Engineer, Google Cloud",
+      "url": "https://de.indeed.com/viewjob?jk=2c012a89cfbac83f",
+      "company": "Google",
+      "location": "Berlin, BE",
+      "description": "",
+      "status": "review",
+      "reasons": [
+        "AI title needs human relevance check",
+        "German job location stated; contract/Blue Card not proven",
+        "job-board link; official employer URL required"
+      ],
+      "skills_in_dataset": [],
+      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
+      "first_observed_in_dataset": true,
+      "newly_posted_on_market": "UNKNOWN"
+    },
+    {
+      "id": "05867641e612f42e42451feb",
+      "title": "Product Designer (AI x Greentech) (m/f/d)",
+      "url": "https://www.linkedin.com/jobs/view/4495819817",
+      "company": "Reonic",
+      "location": "Berlin",
+      "description": "",
+      "status": "review",
+      "reasons": [
+        "AI title needs human relevance check",
+        "German job location stated; contract/Blue Card not proven",
+        "job-board link; official employer URL required"
+      ],
+      "skills_in_dataset": [],
+      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
+      "first_observed_in_dataset": true,
+      "newly_posted_on_market": "UNKNOWN"
+    },
+    {
+      "id": "560adc3efa64166bb03a6a46",
+      "title": "AI Innovation Consultant NCE (m/f/d)",
+      "url": "https://de.indeed.com/viewjob?jk=187fb0c96891fb3a",
+      "company": "Vestas",
+      "location": "Berlin, BE",
+      "description": "",
+      "status": "review",
+      "reasons": [
+        "AI title needs human relevance check",
+        "German job location stated; contract/Blue Card not proven",
+        "job-board link; official employer URL required"
+      ],
+      "skills_in_dataset": [],
+      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
+      "first_observed_in_dataset": true,
+      "newly_posted_on_market": "UNKNOWN"
+    },
+    {
+      "id": "6c329c9265d02a17283387af",
+      "title": "Founding Engineer (m/w/d) – AI-Native Full-Stack & Cloud",
+      "url": "https://de.indeed.com/viewjob?jk=c2a979daf5fbd70b",
+      "company": "Bernhardt & Thoma AI Systems",
+      "location": "Konstanz, BW",
       "description": "",
       "status": "review",
       "reasons": [
@@ -238,52 +130,16 @@
       "newly_posted_on_market": "UNKNOWN"
     },
     {
-      "id": "a401c89d7741d6426c2cd593",
-      "title": "Wissenschaftlicher Mitarbeiter Digital Manufacturing, KI & Additive Fertigung (all genders)",
-      "url": "https://de.indeed.com/viewjob?jk=4245a5e1ac114bfa",
-      "company": "Fraunhofer-Gesellschaft",
-      "location": "Dresden, SN",
+      "id": "255995ae74de54848cba0073",
+      "title": "Technical Customer Support Engineer (m/f/d) Energy Management & AI",
+      "url": "https://de.indeed.com/viewjob?jk=3409733566f9f714",
+      "company": "etalytics GmbH",
+      "location": "Darmstadt, HE",
       "description": "",
       "status": "review",
       "reasons": [
         "AI title needs human relevance check",
-        "German job location stated; contract/Blue Card not proven",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "088947be93d4d93a5279fba1",
-      "title": "Wissenschaftliche*r Mitarbeiter*in: im Bereich KI-Basierte Robotik",
-      "url": "https://de.indeed.com/viewjob?jk=aad9d48dff1cc87c",
-      "company": "Gießerei-, Composite- und Verarbeitungstechnik",
-      "location": "Augsburg, BY",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI title needs human relevance check",
-        "German job location stated; contract/Blue Card not proven",
-        "job-board link; official employer URL required"
-      ],
-      "skills_in_dataset": [],
-      "blue_card": "UNVERIFIED: German contract, salary and residence rules require confirmation",
-      "first_observed_in_dataset": true,
-      "newly_posted_on_market": "UNKNOWN"
-    },
-    {
-      "id": "ddab0183bf1c49561c0778ee",
-      "title": "Manager, Data Science and AI",
-      "url": "https://www.linkedin.com/jobs/view/4495290160",
-      "company": "Pfizer",
-      "location": "Berlin, Berlin",
-      "description": "",
-      "status": "review",
-      "reasons": [
-        "AI title needs human relevance check",
-        "German job location stated; contract/Blue Card not proven",
+        "unknown city/country; do not exclude German city automatically",
         "job-board link; official employer URL required"
       ],
       "skills_in_dataset": [],
